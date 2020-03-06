@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/user/4/deleplaa/2A/C++/tp_cpp/TP1_dudnicp_deleplaa/src/Dvector.cpp
+iostream
+-
+random
+-
+fstream
+-
+Dvector.h
+/user/4/deleplaa/2A/C++/tp_cpp/TP1_dudnicp_deleplaa/src/Dvector.h
+
+/user/4/deleplaa/2A/C++/tp_cpp/TP1_dudnicp_deleplaa/src/Dvector.h
+
