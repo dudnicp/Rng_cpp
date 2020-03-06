@@ -5,7 +5,6 @@ project(TP1_dudnicp_deleplaa)
 
 set(CMAKE_CXX_FLAGS "-g -Wall")
 
-add_executable(exe src/Dvector.cpp
-src/Dvector.h
+add_executable(exe src/Test_Dvector.cpp
 )
 
