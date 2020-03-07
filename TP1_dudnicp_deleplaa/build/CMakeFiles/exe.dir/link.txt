@@ -1,1 +1,0 @@
-/opt/rh/devtoolset-8/root/usr/bin/c++   -g -Wall    CMakeFiles/exe.dir/src/Dvector.cpp.o  -o exe -rdynamic 

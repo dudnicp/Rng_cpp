@@ -33,18 +33,19 @@ int main(int argc, char const *argv[])
     }
     std::cout << "OK" << std::endl;
     
-
-    Dvector a("test.txt");
+    std::string fileName = "test.txt";
+    Dvector a(fileName);
     assert(a.size() == 6);
+    std::cout << "OK" << std::endl;
     for (int i = 0; i < 6; i++)
-    {
-        assert(a.coords()[i] == i/10.);
+    {   
+        assert(a.coords()[i] == (i+1)/10.);
     }
     std::cout << "OK" << std::endl;
 
     std::stringstream str;
     x.display(str);
-    assert(str.str() == "2.0\n2.0\n2.0\n");
+    assert(str.str() == "2\n2\n2\n");
     std::cout << "OK" << std::endl;
 
     return 0;
