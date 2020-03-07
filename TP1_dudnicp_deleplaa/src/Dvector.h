@@ -1,6 +1,13 @@
 #ifndef DVECTOR_H
 #define DVECTOR_H
 
+#include <iostream>
+#include <random>
+#include <fstream>
+#include <ostream>
+#include <string>
+#include <sstream>
+
 class Dvector {
     private:
         double *m_coords;
