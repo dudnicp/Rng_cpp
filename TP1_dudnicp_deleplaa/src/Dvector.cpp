@@ -1,7 +1,11 @@
 #include <iostream>
 #include <random>
 #include <fstream>
+#include <ostream>
+#include <string>
+#include <sstream>
 #include "Dvector.h"
+
 
 Dvector::Dvector() {
     std::cout << "Default constructor" << std::endl;
@@ -43,15 +47,18 @@ Dvector::Dvector(std::string fileName) {
             m_size ++;
         }
 
+        initFile.clear();
+        initFile.seekg(0, std::ios::beg);
+
         if (m_size != 0)
-        {
+        {   
             m_coords = new double[m_size];
-            initFile.seekg(std::ios::beg);
             for (int i = 0; i < m_size; i++)
-            {
+            {   
                 initFile >> currentWord;
                 m_coords[i] = std::stod(currentWord);
             }
+
         } else {
             m_coords = NULL;
         }
