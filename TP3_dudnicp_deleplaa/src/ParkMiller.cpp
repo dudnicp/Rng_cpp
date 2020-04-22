@@ -1,10 +1,9 @@
 #include "ParkMiller.h"
+#include <cmath>
 
-ParkMiller::ParkMiller() : m_seed(0) {}
+ParkMiller::ParkMiller() : m_seed(1) {}
 
 ParkMiller::~ParkMiller() {};
-
-ParkMiller::ParkMiller(const int seed) : m_seed(seed) {}
 
 ParkMiller::ParkMiller(const ParkMiller &other) : m_seed(other.m_seed) {}
 
@@ -12,18 +11,12 @@ void ParkMiller::operator=(const ParkMiller &other) {
     m_seed = other.m_seed;
 }
 
-void ParkMiller::set_seed(const int seed) {
-    m_seed = seed;
-}
-
-int ParkMiller::get_seed() const {
+unsigned long ParkMiller::get_seed() const {
     return m_seed;
 }
 
-int ParkMiller::generate() const {
-    
-    
-    
-    
-    return 0;
+unsigned long ParkMiller::generate() {
+
+    m_seed = (a * (m_seed - (long)floor(m_seed/q) * q) - r * (long)floor(m_seed/q)) % m;
+    return m_seed;
 }
