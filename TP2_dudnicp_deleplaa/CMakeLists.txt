@@ -10,5 +10,5 @@ src/Dvector.cpp
 src/Dvector.h
 src/Test_Dvector.cpp)
 
-add_executable(test_tp1 ${SOURCE_FILES})
+add_executable(test_tp2 ${SOURCE_FILES})
 
