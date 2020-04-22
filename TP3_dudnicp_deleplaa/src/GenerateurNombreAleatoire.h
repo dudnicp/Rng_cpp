@@ -1,7 +1,8 @@
 class GenerateurNombreAleatoire
 {
-private:
+protected:
     int m_dim;
+
 public:
     GenerateurNombreAleatoire(const int dim);
     virtual ~GenerateurNombreAleatoire();
@@ -12,12 +13,12 @@ public:
     int get_dim() const;
 
 
-    void clone(const GenerateurNombreAleatoire &other);
+    virtual GenerateurNombreAleatoire* clone() = 0;
 
-    virtual void set_seed(const int seed) = 0;
-    virtual int get_seed() const = 0;
+    virtual void set_seed(const unsigned long long seed) = 0;
+    virtual unsigned long long get_seed() const = 0;
     virtual void reset_seed() = 0;
 
-    virtual double* generate() = 0;
+    virtual unsigned long long* generate() = 0;
 };
 

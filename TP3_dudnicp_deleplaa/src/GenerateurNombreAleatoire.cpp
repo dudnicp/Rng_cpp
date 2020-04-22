@@ -10,10 +10,6 @@ void GenerateurNombreAleatoire::operator=(const GenerateurNombreAleatoire &other
     m_dim = other.m_dim;
 }
 
-void GenerateurNombreAleatoire::clone(const GenerateurNombreAleatoire &other) {
-    m_dim = other.m_dim;
-}
-
 void GenerateurNombreAleatoire::set_dim(const int dim) {
     m_dim = dim;
 }

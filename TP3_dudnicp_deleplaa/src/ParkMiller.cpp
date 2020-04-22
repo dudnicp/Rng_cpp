@@ -1,6 +1,5 @@
 #include "ParkMiller.h"
 #include <cmath>
-#include <algorithm>
 
 ParkMiller::ParkMiller() : m_seed(1) {}
 
@@ -12,22 +11,28 @@ void ParkMiller::operator=(const ParkMiller &other) {
     m_seed = other.m_seed;
 }
 
-void ParkMiller::set_seed(unsigned int seed) {
-    if (std::__gcd(m, (int) seed) == 1)
-    {
+void ParkMiller::set_seed(unsigned long long seed) {
+    unsigned long long gcd = seed;
+    unsigned long long temp_m = m;
+    unsigned long long temp;
+    while (temp_m != 0) {
+        temp = temp_m;
+        temp_m = gcd % temp_m;
+        gcd = temp;
+    }
+
+    if (gcd == 1) {
         m_seed = seed;
     } else {
         throw InvalidSeed();
-    }
-    
+    }  
 }
 
-unsigned int ParkMiller::get_seed() const {
+unsigned long long ParkMiller::get_seed() const {
     return m_seed;
 }
 
-unsigned int ParkMiller::generate() {
-
+unsigned long long ParkMiller::generate() {
     m_seed = (a * (m_seed - (long)floor(m_seed/q) * q) - r * (long)floor(m_seed/q)) % m;
     return m_seed;
 }

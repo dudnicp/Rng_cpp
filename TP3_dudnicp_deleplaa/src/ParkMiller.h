@@ -4,20 +4,20 @@
 class ParkMiller
 {
 private:
-    unsigned int m_seed;
-    const int a = 16807;
-    const int m = 2147483647;
-    const int q = 127773;
-    const int r = 2836;
+    unsigned long long m_seed;
+    const unsigned long long a = 16807;
+    const unsigned long long m = 2147483647;
+    const unsigned long long q = 127773;
+    const unsigned long long r = 2836;
 public:
     ParkMiller();
     ~ParkMiller();
     ParkMiller(const ParkMiller &other);
     void operator=(const ParkMiller &other);
-    unsigned int generate();
+    unsigned long long generate();
 
-    void set_seed(const unsigned int seed);
-    unsigned int get_seed() const;
+    void set_seed(const unsigned long long seed);
+    unsigned long long get_seed() const;
 };
 
 

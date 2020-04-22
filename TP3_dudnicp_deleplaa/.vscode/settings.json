@@ -10,6 +10,7 @@
         "limits": "cpp",
         "new": "cpp",
         "*.tcc": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "optional": "cpp"
     }
 }
