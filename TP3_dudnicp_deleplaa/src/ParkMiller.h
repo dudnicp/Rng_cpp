@@ -1,19 +1,23 @@
+#include "InvalidSeed.h"
+
+
 class ParkMiller
 {
 private:
-    unsigned long m_seed;
-    const long a = 16807;
-    const long m = 2147483647;
-    const long q = 127773;
-    const long r = 2836;
+    unsigned int m_seed;
+    const int a = 16807;
+    const int m = 2147483647;
+    const int q = 127773;
+    const int r = 2836;
 public:
     ParkMiller();
     ~ParkMiller();
     ParkMiller(const ParkMiller &other);
     void operator=(const ParkMiller &other);
-    unsigned long generate();
+    unsigned int generate();
 
-    unsigned long get_seed() const;
+    void set_seed(const unsigned int seed);
+    unsigned int get_seed() const;
 };
 
 
