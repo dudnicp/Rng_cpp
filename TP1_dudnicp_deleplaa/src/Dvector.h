@@ -17,7 +17,7 @@ class Dvector {
         Dvector();
         Dvector(int size);
         Dvector(int size, double val);
-        Dvector(Dvector &other);
+        Dvector(const Dvector &other);
         Dvector(std::string fileName);
         ~Dvector();
         void display(std::ostream &str) const;

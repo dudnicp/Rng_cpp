@@ -4,11 +4,14 @@
 #include <ostream>
 #include <string>
 #include <sstream>
+#include <cassert>
+#include <cstring>
 #include "Dvector.h"
 
 
 Dvector::Dvector() {
     std::cout << "Default constructor" << std::endl;
+    m_size = 0;
 }
 
 Dvector::Dvector(int size) {
@@ -26,7 +29,7 @@ Dvector::Dvector(int size, double val) {
     }
 }
 
-Dvector::Dvector(Dvector &other) {
+Dvector::Dvector(const Dvector &other) {
     std::cout << "Copy constructor" << std::endl;
     m_size = other.m_size;
     m_coords = new double[m_size];

@@ -30,7 +30,7 @@ class Dvector {
 
         double& operator()(const int i);
 
-        void operator=(const Dvector &other);
+        Dvector& operator=(const Dvector &other);
 
         Dvector& operator+=(const double x);
         Dvector& operator+=(const Dvector &other);
