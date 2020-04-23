@@ -7,8 +7,16 @@ ParkMiller::~ParkMiller() {};
 
 ParkMiller::ParkMiller(const ParkMiller &other) : m_seed(other.m_seed) {}
 
-void ParkMiller::operator=(const ParkMiller &other) {
-    m_seed = other.m_seed;
+ParkMiller& ParkMiller::operator=(const ParkMiller &other) {
+    if (this != &other)
+    {
+        m_seed = other.m_seed;
+    }
+    return *this;
+}
+
+unsigned long long ParkMiller::get_max() const {
+    return m;
 }
 
 void ParkMiller::set_seed(unsigned long long seed) {

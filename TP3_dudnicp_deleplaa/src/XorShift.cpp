@@ -1,4 +1,5 @@
 #include "XorShift.h"
+#include <limits>
 
 XorShift::XorShift() : m_seed(1) {}
 
@@ -6,8 +7,16 @@ XorShift::~XorShift() {}
 
 XorShift::XorShift(const XorShift &other) : m_seed(other.m_seed) {}
 
-void XorShift::operator=(const XorShift &other) {
-    m_seed = other.m_seed;
+XorShift& XorShift::operator=(const XorShift &other) {
+    if (this != &other)
+    {
+        m_seed = other.m_seed;
+    }
+    return *this;
+}
+
+unsigned long long XorShift::get_max() const {
+    return std::numeric_limits<unsigned long long>::max();
 }
 
 unsigned long long XorShift::get_seed() const {

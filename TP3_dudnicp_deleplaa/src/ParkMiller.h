@@ -13,8 +13,11 @@ public:
     ParkMiller();
     ~ParkMiller();
     ParkMiller(const ParkMiller &other);
-    void operator=(const ParkMiller &other);
+    ParkMiller& operator=(const ParkMiller &other);
+    
     unsigned long long generate();
+
+    unsigned long long get_max() const;
 
     void set_seed(const unsigned long long seed);
     unsigned long long get_seed() const;

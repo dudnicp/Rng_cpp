@@ -9,7 +9,9 @@ public:
     GenerateurParkMiller(int dim);
     ~GenerateurParkMiller();
     GenerateurParkMiller(const GenerateurParkMiller &other);
-    void operator=(const GenerateurParkMiller &other);
+    GenerateurParkMiller& operator=(const GenerateurParkMiller &other);
+
+    virtual unsigned long long get_max() const;
 
     virtual GenerateurParkMiller* clone();
 

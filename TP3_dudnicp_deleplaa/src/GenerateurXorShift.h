@@ -9,9 +9,11 @@ public:
     GenerateurXorShift(int dim);
     ~GenerateurXorShift();
     GenerateurXorShift(const GenerateurXorShift &other);
-    void operator=(const GenerateurXorShift &other);
+    GenerateurXorShift& operator=(const GenerateurXorShift &other);
 
     virtual GenerateurXorShift* clone();
+
+    virtual unsigned long long get_max() const;
 
     virtual void set_seed(const unsigned long long seed);
     virtual unsigned long long get_seed() const;
