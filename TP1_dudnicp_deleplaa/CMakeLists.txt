@@ -19,3 +19,5 @@ add_test(NAME test_file_constructor
     COMMAND test_file_constructor)
 add_test(NAME test_display
     COMMAND test_display)
+
+add_custom_target(demo COMMAND demo_Q1)

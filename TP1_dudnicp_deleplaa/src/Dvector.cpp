@@ -89,5 +89,6 @@ void Dvector::fillRandomly() {
 }
 
 Dvector::~Dvector() {
+    std::cout << "Destructeur" << std::endl;
     delete[] m_coords;
 }

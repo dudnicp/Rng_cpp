@@ -18,6 +18,9 @@ target_link_libraries(test_file_constructor dvector)
 add_executable (test_display test_display.cpp)
 target_link_libraries(test_display dvector)
 
+add_executable(demo_Q1 demo_Q1.cpp)
+target_link_libraries(demo_Q1 dvector)
+
 add_custom_target(check 
     COMMAND test_default_constructor
     COMMAND test_constructor
