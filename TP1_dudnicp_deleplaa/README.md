@@ -10,7 +10,7 @@ Classe Dvector : Constructeurs et premières fonctions.
 
 ## Génération des Makefiles à l'aide de Cmake
 
-Depuis le répértoire source du projet:
+Depuis la racine du projet:
 
 ```bash
 cd build
@@ -21,13 +21,13 @@ cmake ..
 
 Commandes à lancer depuis le répertoire **build** du projet
 
-- Génération de la documentation
+- Générer la documentation du projet
 
 ```bash
 make doc
 ```
 
-- Démonstration courte montrant les différences entre les deux écritures
+- Lancer une courte expérience montrant les différences entre les deux écritures
 
 ```C++
 Dvector x;
@@ -44,7 +44,7 @@ et
 make demo
 ```
 
-- Tests unitaires sur les méthodes de la classe **Dvector**
+- Lancer les tests unitaires sur les méthodes de la classe Dvector
 
   - Apercu abrégé
 
@@ -57,6 +57,24 @@ make demo
   ```bash
   make check
   ```
+
+- Compiler les executables de tests ainsi que la documentation du projet
+
+```bash
+make all
+```
+
+ou tout simplement
+
+```bash
+make
+```
+
+- Supprimer les executables compilés
+
+```bash
+make clean
+```
 
 ## Auteurs
 
