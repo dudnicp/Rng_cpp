@@ -249,17 +249,20 @@ bool Dvector::operator==(const Dvector& other) {
     return true;
 }
 
-void Dvector::operator=(const Dvector &other) {
+Dvector& Dvector::operator=(const Dvector &other) {
+    if (this != &other)
+    {
+        memcpy(this, &other, sizeof(other));
+    }
+}
+
+/*
+void Dvector::operator=(const Dvector& other) {
     m_size = other.m_size;
     m_coords = new double[m_size];
     for (int i = 0; i < m_size; i++)
     {
         m_coords[i] = other.m_coords[i];
     }
-}
-
-/*
-void Dvector::operator=(const Dvector& other) {
-    memcpy(this, &other, sizeof(other));
 }
 */
