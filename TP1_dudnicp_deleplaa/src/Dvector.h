@@ -21,7 +21,7 @@
 class Dvector {
     private:
         int m_size; ///< Dimension du vecteur (nombre de coordonnées)
-        double *m_coords; ///< Coordonnées du vecteur */
+        double *m_coords; ///< Coordonnées du vecteur 
     
     public:
         /**
