@@ -1,24 +1,25 @@
-#include <iostream>
-#include <random>
-#include <fstream>
-#include <ostream>
-#include <string>
-#include <sstream>
 #include "Dvector.h"
+#include <random>
+#include <cassert>
+#include <fstream>
+#include <iostream>
 
+/**
+ * \file Dvector.cpp
+ * \brief Vecteur de doubles
+ * \author Paul Dudnic & Adrien Deleplace
+ * \version 1.0
+ * \date 19/05/2020
+ */
 
 Dvector::Dvector() {
-    std::cout << "Default constructor" << std::endl;
-}
-
-Dvector::Dvector(int size) {
-    std::cout << "Constructor given size" << std::endl;
-    m_size = size;
-    m_coords = new double[size];
+    std::cout << "Constructeur par défaut" << std::endl;
+    m_size = 0;
+    m_coords = nullptr;
 }
 
 Dvector::Dvector(int size, double val) {
-    std::cout << "Constructor given size and common value" << std::endl;
+    std::cout << "Constructeur taille / valeur" << std::endl;
     m_size = size;
     m_coords = new double[size];
     for (int i = 0; i < size; i++) {
@@ -26,8 +27,8 @@ Dvector::Dvector(int size, double val) {
     }
 }
 
-Dvector::Dvector(Dvector &other) {
-    std::cout << "Copy constructor" << std::endl;
+Dvector::Dvector(const Dvector &other) {
+    std::cout << "Constructeur par copie" << std::endl;
     m_size = other.m_size;
     m_coords = new double[m_size];
     for (int i = 0; i < m_size; i++)
@@ -37,32 +38,27 @@ Dvector::Dvector(Dvector &other) {
 }
 
 Dvector::Dvector(std::string fileName) {
-    std::cout << "Constructor given file name" << std::endl;
+    std::cout << "Constructeur par fichier" << std::endl;
     std::ifstream initFile(fileName);
 
     if (initFile) {
-        std::string currentWord;
+        double currentCoord;
         m_size = 0;
-        while(initFile >> currentWord) {
+        while(initFile >> currentCoord) {
             m_size ++;
         }
 
         initFile.clear();
         initFile.seekg(0, std::ios::beg);
 
-        if (m_size != 0)
-        {   
+        if (m_size != 0) {   
             m_coords = new double[m_size];
-            for (int i = 0; i < m_size; i++)
-            {   
-                initFile >> currentWord;
-                m_coords[i] = std::stod(currentWord);
+            for (int i = 0; i < m_size; i++) {   
+                initFile >> m_coords[i];
             }
-
         } else {
-            m_coords = NULL;
+            m_coords = nullptr;
         }
-        
     } else {
         std::cout << "Impossible to open file " << fileName << std::endl;
     }
@@ -92,4 +88,7 @@ void Dvector::fillRandomly() {
     }
 }
 
-Dvector::~Dvector() {}
+Dvector::~Dvector() {
+    std::cout << "Destructeur" << std::endl;
+    delete[] m_coords;
+}

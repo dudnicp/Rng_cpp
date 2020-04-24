@@ -1,14 +1,23 @@
-# Le fichier doit être renommé CMakeLists.txt
-cmake_minimum_required(VERSION 2.8.2)
+cmake_minimum_required(VERSION 2.8)
+
+set(CMAKE_CXX_FLAGS "-g -Wall")
+set(CMAKE_BUILD_TYPE DEBUG)
 
 project(TP1_dudnicp_deleplaa)
 
-set(CMAKE_CXX_FLAGS "-g -Wall")
+add_subdirectory(src)
+add_subdirectory(doc)
+add_subdirectory(test)
+enable_testing()
+add_test(NAME test_default_constructor
+    COMMAND test_default_constructor)
+add_test(NAME test_constructor
+    COMMAND test_constructor)
+add_test(NAME test_copy_constructor
+    COMMAND test_copy_constructor)
+add_test(NAME test_file_constructor
+    COMMAND test_file_constructor)
+add_test(NAME test_display
+    COMMAND test_display)
 
-set(SOURCE_FILES 
-src/Dvector.cpp
-src/Dvector.h
-src/Test_Dvector.cpp)
-
-add_executable(test_tp1 ${SOURCE_FILES})
-
+add_custom_target(demo COMMAND demo_Q1)
