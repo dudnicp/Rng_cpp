@@ -1,5 +1,6 @@
 #include "DistributionNormale.h"
 #include <cmath>
+#include <cstdint>
 
 DistributionNormale::DistributionNormale() : m_mean(0.), m_stdev(1.) {}
 
@@ -19,8 +20,8 @@ DistributionNormale& DistributionNormale::operator=(const DistributionNormale &o
 }
 
 double* DistributionNormale::random_draws(GenerateurNombreAleatoire &generator) const {
-    unsigned long long* X = generator.generate();
-    unsigned long long* Y = generator.generate();
+    uint64_t* X = generator.generate();
+    uint64_t* Y = generator.generate();
 
     const int dim = generator.get_dim();
     
@@ -61,6 +62,7 @@ double DistributionNormale::pdf(const double x) const {
 }
 
 double DistributionNormale::inv_cdf(const double x) const {
+
     double left = 0.;
     double right = 1.;
     double error = 0.0001;

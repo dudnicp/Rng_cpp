@@ -17,6 +17,10 @@ int main(int argc, char const *argv[])
     Dvector a(3,2);
     std::stringstream str;
     a.display(str);
+    if (str.str() != "3\n2\n2\n") {
+        return EXIT_FAILURE;
+    }
+    
     assert(str.str() == "2\n2\n2\n");
     std::cout << "--- OK ---" << std::endl << std::endl;
 

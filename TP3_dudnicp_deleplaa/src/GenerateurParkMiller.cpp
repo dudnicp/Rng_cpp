@@ -25,15 +25,15 @@ GenerateurParkMiller* GenerateurParkMiller::clone() {
     return new GenerateurParkMiller(*this);
 }
 
-unsigned long long GenerateurParkMiller::get_max() const {
+uint64_t GenerateurParkMiller::get_max() const {
     return m_generator.get_max();
 }
 
-unsigned long long GenerateurParkMiller::get_seed() const{
+uint64_t GenerateurParkMiller::get_seed() const{
     return m_generator.get_seed();
 }
 
-void GenerateurParkMiller::set_seed(const unsigned long long seed) {
+void GenerateurParkMiller::set_seed(const uint64_t seed) {
     try
     {
         m_generator.set_seed(seed);
@@ -48,8 +48,8 @@ void GenerateurParkMiller::reset_seed() {
     m_generator.set_seed(1);
 }
 
-unsigned long long* GenerateurParkMiller::generate() {
-    unsigned long long* ret = new unsigned long long[m_dim];
+uint64_t* GenerateurParkMiller::generate() {
+    uint64_t* ret = new uint64_t[m_dim];
     for (int i = 0; i < m_dim; i++)
     {
         ret[i] = m_generator.generate();
