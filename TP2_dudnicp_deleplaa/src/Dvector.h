@@ -24,9 +24,10 @@ class Dvector {
         int size() const;
         double* coords() const;
         void fillRandomly();
-        void resize(int newSize, double val);
+        void resize(const int newSize, const double val = 0);
 
-        bool operator==(const Dvector& other) const;
+        bool operator==(const Dvector &other) const;
+        bool operator!=(const Dvector &other) const;
 
         double& operator()(const int i);
 

@@ -95,7 +95,7 @@ void Dvector::fillRandomly() {
     }
 }
 
-void Dvector::resize(int newSize, double val) {
+void Dvector::resize(const int newSize, const double val = 0) {
     m_coords = (double*) realloc(m_coords, newSize * sizeof(double));
     if (newSize > m_size)
     {
@@ -170,7 +170,7 @@ Dvector& Dvector::operator/=(const double x) {
     return *this;
 }
 
-Dvector operator-(const Dvector &v){
+Dvector operator-(const Dvector &v) {
     Dvector ret(v);
     return ret * -1;
 }
@@ -233,7 +233,7 @@ std::istream& operator>>(std::istream& stream, Dvector& v) {
 
 /* Boolean operators */
 
-bool Dvector::operator==(const Dvector& other) {
+bool Dvector::operator==(const Dvector& other) const {
     if (m_size != other.m_size)
     {
         return false;
