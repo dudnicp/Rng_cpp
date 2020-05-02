@@ -40,7 +40,7 @@ class Dvector {
          * \param[in] val La valeur désirée des coordonnées (0 par défaut)
          * \throw invalid_argument Si la taille spécifiée est < 0
          */
-        Dvector(int size, double val = 0);
+        Dvector(const int size, const double val = 0);
 
         /**
          * \brief Construit un Dvector identique au Dvector spécifié
@@ -113,7 +113,7 @@ class Dvector {
          * \return Une référence sur la coordonnée d'indice spécifié du Dvector
          * \throw out_of_range Si l'indice spécifié est < 0 ou > à la taille du Dvector
          */
-        double& operator()(const int i);
+        double& operator()(const int i) const;
 
         /**
          * \brief Affecte au Dvector la taille et les coordonnées d'un autre Dvector
