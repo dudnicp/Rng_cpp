@@ -13,8 +13,8 @@
 
 /**
  * \brief Teste l'égalité entre deux valeurs
- * \param arg0 Une valeur à comparer
- * \param arg1 Une autre valeur à comparer
+ * \param[in] arg0 Une valeur à comparer
+ * \param[in] arg1 Une autre valeur à comparer
  */
 template<typename T>
 void TEST_EQ(T arg0, T arg1) {
@@ -26,8 +26,8 @@ void TEST_EQ(T arg0, T arg1) {
 
 /**
  * \brief Teste l'inégalité entre deux valeurs
- * \param arg0 Une valeur à comparer
- * \param arg1 Une autre valeur à comparer
+ * \param[in] arg0 Une valeur à comparer
+ * \param[in] arg1 Une autre valeur à comparer
  */
 template<typename T>
 void TEST_NEQ(T arg0, T arg1) {
