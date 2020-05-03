@@ -16,8 +16,11 @@ int main(int argc, char const *argv[])
     std::stringstream str1("1. 1. 1.");
     std::stringstream str2("2. 2. 2. 2.");
     std::stringstream str3("3. 3.");
+    std::stringstream str4("4. 4. 4. 4.");
 
     Dvector v(3);
+    Dvector a(2);
+    Dvector b(2);
 
     // Test stream.size == v.m_size
     str1 >> v;
@@ -32,6 +35,11 @@ int main(int argc, char const *argv[])
     Dvector test(3, 3.);
     test(2) = 2;
     TEST_EQ(v, test);
+
+    // Test stream >> Dvector >> Dvector
+    str4 >> a >> b;
+    TEST_EQ(a, Dvector(2, 4.));
+    TEST_EQ(b, Dvector(2, 4.));
     
     return EXIT_SUCCESS;
 }

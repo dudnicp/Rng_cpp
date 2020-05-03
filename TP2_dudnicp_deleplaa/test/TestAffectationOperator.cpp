@@ -19,5 +19,8 @@ int main(int argc, char const *argv[])
     // Test affectation vecteur null
     TEST_EQ(v = Dvector(), Dvector());
 
+    // Test affectations chainées
+    TEST_EQ(v = Dvector(3, 2.) = Dvector(3, 4.), Dvector(3, 4.));
+
     return EXIT_SUCCESS;
 }

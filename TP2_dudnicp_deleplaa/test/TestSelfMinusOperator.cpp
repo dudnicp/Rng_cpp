@@ -17,7 +17,7 @@ int main(int argc, char const *argv[])
     // Test Dvector -= Dvector
     TEST_EQ(Dvector(3, 2.) -= Dvector(3, 3.), Dvector(3, -1));
 
-    // Test Dvector - Dvector (tailles incompatibles)
+    // Test Dvector -= Dvector (tailles incompatibles)
     try
     {
         Dvector(3, 2.) -= Dvector(4, 2.);
@@ -25,6 +25,9 @@ int main(int argc, char const *argv[])
     }
     catch(const std::domain_error& e) {}
 
+    // Test Dvector -= Dvector -= double
+    // Test Dvector -= Dvector
+    TEST_EQ(Dvector(3, 2.) -= Dvector(3, 2.) -= 1., Dvector(3, 1.));
     
     return EXIT_SUCCESS;
 }

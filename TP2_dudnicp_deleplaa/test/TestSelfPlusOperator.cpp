@@ -25,6 +25,9 @@ int main(int argc, char const *argv[])
     }
     catch(const std::domain_error& e) {}
     
-    
+    // Test Dvector += Dvector += double
+    TEST_EQ(Dvector(3, 1.) += Dvector(3, 1.) += 1., Dvector(3, 3.));
+
+
     return EXIT_SUCCESS;
 }

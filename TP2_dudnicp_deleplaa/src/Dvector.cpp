@@ -40,7 +40,7 @@ Dvector::Dvector(const Dvector &other) : Dvector()
     *this = other;
 }
 
-Dvector::Dvector(std::string fileName)
+Dvector::Dvector(const std::string fileName)
 {
     std::cout << "Constructeur par fichier" << std::endl;
     std::ifstream initFile(fileName);
@@ -237,51 +237,45 @@ Dvector &Dvector::operator/=(const double x)
     return *this;
 }
 
-Dvector operator-(const Dvector &v)
-{
-    return v * (-1);
-}
-
 Dvector operator+(const Dvector &v, const double x)
 {
     Dvector ret(v);
-    ret += x;
-    return ret;
+    return ret += x;
 }
 
 Dvector operator+(const Dvector &v1, const Dvector &v2)
 {
     Dvector ret(v1);
-    ret += v2;
-    return ret;
+    return ret += v2;
 }
 
 Dvector operator-(const Dvector &v, const double x)
 {
     Dvector ret(v);
-    ret -= x;
-    return ret;
+    return ret -= x;
 }
 
 Dvector operator-(const Dvector &v1, const Dvector &v2)
 {
     Dvector ret(v1);
-    ret -= v2;
-    return ret;
+    return ret -= v2;
 }
 
 Dvector operator*(const Dvector &v, const double x)
 {
     Dvector ret(v);
-    ret *= x;
-    return ret;
+    return ret *= x;
 }
 
 Dvector operator/(const Dvector &v, const double x)
 {
     Dvector ret(v);
-    ret /= x;
-    return ret;
+    return  ret /= x;
+}
+
+Dvector operator-(const Dvector &v)
+{
+    return v * (-1);
 }
 
 /* Stream operators */

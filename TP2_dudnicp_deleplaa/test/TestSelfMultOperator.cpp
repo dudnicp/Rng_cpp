@@ -11,7 +11,7 @@
 
 int main(int argc, char const *argv[])
 {
-    // Test Dvector / double
+    // Test Dvector *= double
     TEST_EQ(Dvector(3, 2.) *= 3, Dvector(3, 6.));
 
     

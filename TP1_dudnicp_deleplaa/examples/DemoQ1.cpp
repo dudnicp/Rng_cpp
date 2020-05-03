@@ -20,6 +20,7 @@ int main(int argc, char const *argv[])
     std::cout << "Dvector x = Dvector(3, 1.)" << std::endl;
     Dvector y = Dvector(3, 1.);
     y.display(std::cout);
+    std::cout << std::endl;
 
     return EXIT_SUCCESS;
 }

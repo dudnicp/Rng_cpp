@@ -14,6 +14,14 @@ int main(int argc, char const *argv[])
     // Test Dvector /= double
     TEST_EQ(Dvector(3, 2.) /= 3, Dvector(3, 2./3.));
 
-    
+    // Test Dvector / 0
+    try
+    {
+        Dvector(3, 2.) /= 0;
+        return EXIT_FAILURE;
+    }
+    catch(const std::domain_error& e) {}
+
+
     return EXIT_SUCCESS;
 }
