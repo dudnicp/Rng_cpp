@@ -17,11 +17,11 @@
  * \param[in] arg1 Une autre valeur à comparer
  */
 template <typename T>
-void TEST_EQ(T arg0, T arg1)
+void TEST_EQ(const T &arg0, const T &arg1)
 {
     if (arg0 != arg1)
     {
-        exit(EXIT_FAILURE)
+        exit(EXIT_FAILURE);
     }
 }
 
@@ -31,11 +31,11 @@ void TEST_EQ(T arg0, T arg1)
  * \param[in] arg1 Une autre valeur à comparer
  */
 template <typename T>
-void TEST_NEQ(T arg0, T arg1)
+void TEST_NEQ(const T &arg0, const T &arg1)
 {
     if (arg0 == arg1)
     {
-        exit(EXIT_FAILURE)
+        exit(EXIT_FAILURE);
     }
 }
 

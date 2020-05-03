@@ -9,10 +9,11 @@ add_subdirectory(doc)
 add_subdirectory(test)
 enable_testing()
 
-file(GLOB allTests *.exe)
+file(GLOB allTests test/*.cpp)
 
 foreach(test ${allTests})
     get_filename_component(testName ${test} NAME_WE)
-    add_test(NAME ${testName} COMMAND test)
+    add_test(NAME ${testName} COMMAND ${testName})
 endforeach(test)
 
+add_custom_target(check COMMAND make test VERBATIM)

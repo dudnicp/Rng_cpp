@@ -4,12 +4,14 @@
 #include <cstring>
 #include "Dvector.h"
 
-Dvector::Dvector() : m_size(0), m_coords(nullptr)
+Dvector::Dvector()
 {
+    m_size = 0;
+    m_coords = nullptr;
     std::cout << "Constructeur par défaut" << std::endl;
 }
 
-Dvector::Dvector(const int size, const double val) : m_size(m_size)
+Dvector::Dvector(const int size, const double val)
 {
     std::cout << "Constructeur taille / valeur" << std::endl;
 
@@ -17,7 +19,8 @@ Dvector::Dvector(const int size, const double val) : m_size(m_size)
     {
         throw std::invalid_argument("Taille invalide");
     }
-    
+
+    m_size = size;
     if (m_size == 0)
     {
         m_coords = nullptr;
@@ -32,7 +35,7 @@ Dvector::Dvector(const int size, const double val) : m_size(m_size)
     }
 }
 
-Dvector::Dvector(const Dvector &other)
+Dvector::Dvector(const Dvector &other) : Dvector()
 {
     std::cout << "Constructeur par copie" << std::endl;
     *this = other;
@@ -103,37 +106,54 @@ void Dvector::fillRandomly()
     }
 }
 
-void Dvector::resize(const int newSize, const double val = 0)
+Dvector::~Dvector()
 {
-    if (newSize)
+    std::cout << "Destructeur" << std::endl;
+    delete[] m_coords;
+}
+
+void Dvector::setSize(const int newSize) {
+    if (newSize < 0)
     {
         throw std::invalid_argument("Taille invalide");
     }
-    
+
     if (m_size != newSize)
     {
-        m_size = newSize;
-        if (m_size == 0)
+        if (newSize != 0)
         {
-            m_coords = nullptr;
+            double* temp = new double[newSize];
+            if (m_size != 0)
+            {
+                memcpy(temp, m_coords, std::min(m_size, newSize)*sizeof(double));
+                delete[] m_coords;
+            }
+            m_coords = temp;
         }
         else
         {
-            m_coords = (double *)realloc(m_coords, newSize * sizeof(double));
-            if (newSize > m_size)
+            if (m_size != 0)
             {
-                for (int i = m_size; i < newSize; i++)
-                {
-                    m_coords[i] = val;
-                }
+                delete[] m_coords;
             }
+            
+            m_coords = nullptr;
         }
+        m_size = newSize;
     }
 }
 
-Dvector::~Dvector()
+void Dvector::resize(const int newSize, const double val)
 {
-    delete[] m_coords;
+    int temp = m_size;
+    setSize(newSize);
+    if (newSize > temp)
+    {
+        for (int i = temp; i < m_size; i++)
+        {
+            m_coords[i] = val;
+        }
+    }
 }
 
 /* Acces operator */
@@ -220,8 +240,7 @@ Dvector &Dvector::operator/=(const double x)
 
 Dvector operator-(const Dvector &v)
 {
-    Dvector ret(v);
-    return ret * -1;
+    return v * (-1);
 }
 
 Dvector operator+(const Dvector &v, const double x)
@@ -314,56 +333,42 @@ bool Dvector::operator==(const Dvector &other) const
     return true;
 }
 
-Dvector &Dvector::operator=(const Dvector &other)
+bool Dvector::operator!=(const Dvector &other) const
 {
-    if (this != &other)
-    {
-        if (m_size == other.m_size)
-        {
-            if (m_size != 0)
-            {
-                memcpy(m_coords, other.m_coords, m_size * sizeof(double));
-            }
-        }
-        else
-        {
-            m_size = other.m_size;
-            delete[] m_coords;
-            if (m_size == 0)
-            {
-                m_coords = nullptr;
-            }
-            else
-            {
-                m_coords = new double[m_size];
-                memcpy(m_coords, other.m_coords, m_size * sizeof(double));
-            }
-        }
-    }
-    return *this;
+    return !(*this == other);
 }
 
 Dvector &Dvector::operator=(const Dvector &other)
 {
     if (this != &other)
     {
-        if (m_size != other.m_size)
-        {
-            m_size = other.m_size;
-            delete[] m_coords;
-            if (m_size == 0)
-            {
-                m_coords = nullptr;
-            }
-            else
-            {
-                m_coords = new double[m_size];
-            }
-        }
-        for (int i = 0; i < m_size; i++)
-        {
-            m_coords[i] = other.m_coords[i];
-        }
+        setSize(other.m_size);
+        memcpy(m_coords, other.m_coords, m_size * sizeof(double));
     }
     return *this;
 }
+
+// Dvector &Dvector::operator=(const Dvector &other)
+// {
+//     if (this != &other)
+//     {
+//         if (m_size != other.m_size)
+//         {
+//             m_size = other.m_size;
+//             delete[] m_coords;
+//             if (m_size == 0)
+//             {
+//                 m_coords = nullptr;
+//             }
+//             else
+//             {
+//                 m_coords = new double[m_size];
+//             }
+//         }
+//         for (int i = 0; i < m_size; i++)
+//         {
+//             m_coords[i] = other.m_coords[i];
+//         }
+//     }
+//     return *this;
+// }

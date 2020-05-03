@@ -27,6 +27,13 @@ class Dvector {
     private:
         double *m_coords;
         int m_size;
+
+        /**
+         * \brief Modifie la taille du Dvector
+         * \param[in] newSize La nouvelle taille du Dvector
+         * \throw invalid_argument Si la nouvelle taille est < 0
+         */
+        void setSize(const int newSize);
     
     public:
         /**
@@ -40,7 +47,7 @@ class Dvector {
          * \param[in] val La valeur désirée des coordonnées (0 par défaut)
          * \throw invalid_argument Si la taille spécifiée est < 0
          */
-        Dvector(const int size, const double val = 0);
+        Dvector(const int size, const double val = 0.);
 
         /**
          * \brief Construit un Dvector identique au Dvector spécifié
@@ -91,7 +98,7 @@ class Dvector {
          * \param[in] val La valeur des nouvelles coordonnées (par défaut 0)
          * \throw invalid_argument Si la nouvelle taille est < 0
          */
-        void resize(const int newSize, const double val = 0);
+        void resize(const int newSize, const double val = 0.);
 
         /**
          * \brief Teste l'égalité entre le Dvector et un autre
@@ -204,7 +211,7 @@ Dvector operator-(const Dvector& v1, const Dvector& v2);
 
 /**
  * \brief Calcule la multiplication d'un Dvector par une constante
- * \param[in] v1 Le Dvector à multiplier
+ * \param[in] v Le Dvector à multiplier
  * \param[in] x La constante multiplicatrice
  * \return Un Dvector dont les coordonnées sont la multiplication des coordonnées du Dvector spécifié par la constante
  */
@@ -212,7 +219,7 @@ Dvector operator*(const Dvector& v, const double x);
 
 /**
  * \brief Calcule la division d'un Dvector par une constante
- * \param[in] v1 Le Dvector à Diviser
+ * \param[in] v Le Dvector à Diviser
  * \param[in] x Le diviseur
  * \return Un Dvector dont les coordonnées sont la division des coordonnées du Dvector spécifié par la constante
  * \throw domain_error Si le diviseur est 0
@@ -236,7 +243,7 @@ std::ostream& operator<<(std::ostream& stream, const Dvector& v);
 
 /**
  * \brief Ecrit les données d'un flux dans les coordonnées d'un Dvector
- * \param[inout] Le flux contenant les données à écrire
+ * \param[inout] stream Le flux contenant les données à écrire
  * \param[in] v Le Dvector dans lequel écrire les données
  * \return Une référence sur le flux après écriture
  */

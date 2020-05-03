@@ -16,7 +16,7 @@ int main(int argc, char const *argv[])
     std::stringstream str;
     str << Dvector(3, 2.);
 
-    TEST_EQ(str.str(), std::string("2.\n2.\n2\n"));
+    TEST_EQ(str.str(), std::string("2\n2\n2\n"));
     
     return EXIT_SUCCESS;
 }

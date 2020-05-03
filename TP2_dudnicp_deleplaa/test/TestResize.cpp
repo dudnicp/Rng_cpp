@@ -19,12 +19,12 @@ int main(int argc, char const *argv[])
 
     // Test resize taille inferieure
     v.resize(2, 3.);
-    TEST_EQ(v, Dvector(2, 3.));
+    TEST_EQ(v, Dvector(2, 2.));
 
     // Test resize taille supérieure
-    v.resize(4, 2.);
-    Dvector test(4, 2.);
-    test(0) = test(1) = 3.;
+    v.resize(4, 3.);
+    Dvector test(4, 3.);
+    test(0) = test(1) = 2.;
     TEST_EQ(v, test);
 
     // Test resize taille nulle
