@@ -7,6 +7,7 @@ project(TP1_dudnicp_deleplaa)
 add_subdirectory(src)
 add_subdirectory(doc)
 add_subdirectory(test)
+add_subdirectory(examples)
 enable_testing()
 
 file(GLOB allTests test/*.cpp)
@@ -17,4 +18,3 @@ foreach(test ${allTests})
 endforeach(test)
 
 add_custom_target(check COMMAND make test VERBATIM)
-add_custom_target(demo COMMAND demo_Q1)

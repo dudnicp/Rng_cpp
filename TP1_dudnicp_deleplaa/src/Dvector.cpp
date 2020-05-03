@@ -1,5 +1,4 @@
 #include "Dvector.h"
-#include <iostream>
 #include <random>
 #include <fstream>
 #include <cstring>
@@ -35,13 +34,25 @@ Dvector::Dvector(const int size, const double val)
     }
 }
 
-Dvector::Dvector(const Dvector &other) : Dvector()
+Dvector::Dvector(const Dvector &other)
 {
     std::cout << "Constructeur par copie" << std::endl;
-    *this = other;
+    m_size = other.m_size;
+    if (m_size == 0)
+    {
+        m_coords = nullptr;
+    }
+    else
+    {
+        m_coords = new double[m_size];
+        for (int i = 0; i < m_size; i++)
+        {
+            m_coords[i] = other.m_coords[i];
+        }
+    }
 }
 
-Dvector::Dvector(std::string fileName)
+Dvector::Dvector(const std::string fileName)
 {
     std::cout << "Constructeur par fichier" << std::endl;
     std::ifstream initFile(fileName);

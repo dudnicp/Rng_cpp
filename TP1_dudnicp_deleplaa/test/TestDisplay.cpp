@@ -4,7 +4,7 @@
 #include <sstream>
 
 /**
- * \file test_display.cpp
+ * \file TestDisplay.cpp
  * \brief Tests de la fonction display() de la classe Dvector
  * \author Paul Dudnic & Adrien Deleplace
  * \version 1.0

@@ -2,7 +2,7 @@
 #include "MyTest.h"
 
 /**
- * \file test_constructor.cpp
+ * \file TestSizeValueConstructor.cpp
  * \brief Tests du constructeur taille + valeur de la classe Dvector
  * \author Paul Dudnic & Adrien Deleplace
  * \version 1.0

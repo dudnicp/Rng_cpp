@@ -1,6 +1,8 @@
 #ifndef DVECTOR_H
 #define DVECTOR_H
 
+#include <iostream>
+
 /**
  * \file Dvector.h
  * \brief Vecteur de doubles
@@ -46,7 +48,7 @@ class Dvector {
          * \param[in] fileName Le fichier contenant les données d'initialisation
          * \throw invalid_argument Si le fichier spécifié ne peut pas être ouvert
          */
-        Dvector(std::string fileName);
+        Dvector(const std::string fileName);
 
         /** 
          * \brief Détruit le Dvector en libérant la mémoire
