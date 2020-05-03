@@ -2,11 +2,6 @@
 #define DVECTOR_H
 
 #include <iostream>
-#include <random>
-#include <fstream>
-#include <ostream>
-#include <string>
-#include <sstream>
 
 /**
  * \file Dvector.h
@@ -25,8 +20,8 @@
  */
 class Dvector {
     private:
-        double *m_coords;
-        int m_size;
+        int m_size; ///Taille du Dvector (nombre de coordonnées)
+        double *m_coords; ///< Coordonnées du Dvector
 
         /**
          * \brief Modifie la taille du Dvector

@@ -8,15 +8,13 @@ add_subdirectory(src)
 add_subdirectory(doc)
 add_subdirectory(test)
 enable_testing()
-add_test(NAME test_default_constructor
-    COMMAND test_default_constructor)
-add_test(NAME test_constructor
-    COMMAND test_constructor)
-add_test(NAME test_copy_constructor
-    COMMAND test_copy_constructor)
-add_test(NAME test_file_constructor
-    COMMAND test_file_constructor)
-add_test(NAME test_display
-    COMMAND test_display)
 
+file(GLOB allTests test/*.cpp)
+
+foreach(test ${allTests})
+    get_filename_component(testName ${test} NAME_WE)
+    add_test(NAME ${testName} COMMAND ${testName})
+endforeach(test)
+
+add_custom_target(check COMMAND make test VERBATIM)
 add_custom_target(demo COMMAND demo_Q1)
