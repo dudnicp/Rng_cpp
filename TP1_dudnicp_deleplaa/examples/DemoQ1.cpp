@@ -11,10 +11,13 @@
 
 int main(int argc, char const *argv[])
 {
+    std::cout << "Dvector x; x = Dvector(3, 1.)" << std::endl;
     Dvector x;
     x = Dvector(3, 1.);
     x.display(std::cout);
+    std::cout << std::endl;
 
+    std::cout << "Dvector x = Dvector(3, 1.)" << std::endl;
     Dvector y = Dvector(3, 1.);
     y.display(std::cout);
 
