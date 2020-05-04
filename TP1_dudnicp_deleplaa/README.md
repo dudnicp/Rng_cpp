@@ -23,21 +23,21 @@ Commandes à lancer depuis le répertoire **build** du projet
 
 - Compiler les executables de tests, les exemples ainsi que la documentation du projet
 
-```bash
-make all
-```
+  ```bash
+  make all
+  ```
 
-ou tout simplement
+  ou tout simplement
 
-```bash
-make
-```
+  ```bash
+  make
+  ```
 
 - Générer la documentation du projet
 
-```bash
-make doc
-```
+  ```bash
+  make doc
+  ```
 
 - Lancer les tests unitaires sur les méthodes de la classe Dvector
 
@@ -62,9 +62,9 @@ make doc
 
 - Supprimer les executables compilés
 
-```bash
-make clean
-```
+  ```bash
+  make clean
+  ```
 
 ## Auteurs
 
