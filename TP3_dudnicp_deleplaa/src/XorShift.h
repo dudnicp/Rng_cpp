@@ -1,20 +1,27 @@
+#ifndef XORSHIFT_H
+#define XORSHIFT_H
+
+#include <cstdint>
+
 class XorShift
 {
 private:
-    unsigned long long m_seed;
-    const long long a1 = 17;
-    const long long a2 = 31;
-    const long long a3 = 8;
+    uint64_t m_seed;
+    const uint64_t a1 = 17;
+    const uint64_t a2 = 31;
+    const uint64_t a3 = 8;
 public:
     XorShift();
     ~XorShift();
     XorShift(const XorShift &other);
     XorShift& operator=(const XorShift &other);
 
-    unsigned long long generate();
+    uint64_t generate();
 
-    unsigned long long get_max() const;
+    uint64_t get_max() const;
 
-    void set_seed(const unsigned long long seed);
-    unsigned long long get_seed() const;
+    void set_seed(const uint64_t seed);
+    uint64_t get_seed() const;
 };
+
+#endif

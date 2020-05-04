@@ -14,10 +14,9 @@ public:
     GenerateurParkMiller(const GenerateurParkMiller &other);
     GenerateurParkMiller& operator=(const GenerateurParkMiller &other);
 
+    void clone(const GenerateurParkMiller &other);
+
     virtual uint64_t get_max() const;
-
-    virtual GenerateurParkMiller* clone();
-
     virtual void set_seed(const uint64_t seed);
     virtual uint64_t get_seed() const;
     virtual void reset_seed();

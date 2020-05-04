@@ -15,19 +15,19 @@ XorShift& XorShift::operator=(const XorShift &other) {
     return *this;
 }
 
-unsigned long long XorShift::get_max() const {
-    return std::numeric_limits<unsigned long long>::max();
+uint64_t XorShift::get_max() const {
+    return std::numeric_limits<uint64_t>::max();
 }
 
-unsigned long long XorShift::get_seed() const {
+uint64_t XorShift::get_seed() const {
     return m_seed;
 }
 
-void XorShift::set_seed(const unsigned long long seed) {
+void XorShift::set_seed(const uint64_t seed) {
     m_seed = seed;
 }
 
-unsigned long long XorShift::generate() {
+uint64_t XorShift::generate() {
     m_seed = m_seed | (m_seed << a1);
     m_seed = m_seed | (m_seed >> a2);
     m_seed = m_seed | (m_seed << a3);

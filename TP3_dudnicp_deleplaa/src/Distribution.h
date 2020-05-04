@@ -1,3 +1,6 @@
+#ifndef DISTRIBUTION_H
+#define DISTRIBUTION_H
+
 #include "GenerateurNombreAleatoire.h"
 
 
@@ -19,3 +22,4 @@ public:
     virtual double pdf(const double x) const = 0;
 };
 
+#endif

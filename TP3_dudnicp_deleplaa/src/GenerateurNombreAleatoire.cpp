@@ -6,7 +6,8 @@ GenerateurNombreAleatoire::~GenerateurNombreAleatoire() {}
 
 GenerateurNombreAleatoire::GenerateurNombreAleatoire(const GenerateurNombreAleatoire &other) : m_dim(other.m_dim) {}
 
-GenerateurNombreAleatoire& GenerateurNombreAleatoire::operator=(const GenerateurNombreAleatoire &other) {
+GenerateurNombreAleatoire &GenerateurNombreAleatoire::operator=(const GenerateurNombreAleatoire &other)
+{
     if (this != &other)
     {
         m_dim = other.m_dim;
@@ -14,10 +15,17 @@ GenerateurNombreAleatoire& GenerateurNombreAleatoire::operator=(const Generateur
     return *this;
 }
 
-void GenerateurNombreAleatoire::set_dim(const int dim) {
+void GenerateurNombreAleatoire::clone(const GenerateurNombreAleatoire &other)
+{
+    *this = other;
+}
+
+void GenerateurNombreAleatoire::set_dim(const int dim)
+{
     m_dim = dim;
 }
 
-int GenerateurNombreAleatoire::get_dim() const {
+int GenerateurNombreAleatoire::get_dim() const
+{
     return m_dim;
 }

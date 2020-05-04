@@ -17,11 +17,9 @@ public:
     void set_dim(const int dim);
     int get_dim() const;
 
+    void clone(const GenerateurNombreAleatoire &other);
+
     virtual uint64_t get_max() const = 0;
-
-
-    virtual GenerateurNombreAleatoire* clone() = 0;
-
     virtual void set_seed(const uint64_t seed) = 0;
     virtual uint64_t get_seed() const = 0;
     virtual void reset_seed() = 0;

@@ -1,3 +1,6 @@
+#ifndef GENERATEURXORSHIFT_H
+#define GENERATEURXORSHIFT_H
+
 #include "GenerateurNombreAleatoire.h"
 #include "XorShift.h"
 
@@ -11,14 +14,14 @@ public:
     GenerateurXorShift(const GenerateurXorShift &other);
     GenerateurXorShift& operator=(const GenerateurXorShift &other);
 
-    virtual GenerateurXorShift* clone();
+    void clone(const GenerateurXorShift &other);
 
-    virtual unsigned long long get_max() const;
-
-    virtual void set_seed(const unsigned long long seed);
-    virtual unsigned long long get_seed() const;
+    virtual uint64_t get_max() const;
+    virtual void set_seed(const uint64_t seed);
+    virtual uint64_t get_seed() const;
     virtual void reset_seed();
 
-    virtual unsigned long long* generate();
+    virtual uint64_t* generate();
 };
 
+#endif

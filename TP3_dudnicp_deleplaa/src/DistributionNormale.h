@@ -1,3 +1,6 @@
+#ifndef DISTRIBUTIONNORMALE_H
+#define DISTRIBUTIONNORMALE_H
+
 #include "Distribution.h"
 #include <cmath>
 
@@ -26,4 +29,6 @@ public:
     virtual double inv_cdf(const double x) const;
     virtual double pdf(const double x) const;
 };
+
+#endif
 

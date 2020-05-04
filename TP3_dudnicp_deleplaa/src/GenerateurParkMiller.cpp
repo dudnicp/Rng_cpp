@@ -21,8 +21,8 @@ GenerateurParkMiller& GenerateurParkMiller::operator=(const GenerateurParkMiller
     return *this;
 }
 
-GenerateurParkMiller* GenerateurParkMiller::clone() {
-    return new GenerateurParkMiller(*this);
+void GenerateurParkMiller::clone(const GenerateurParkMiller& other) {
+    *this = other;
 }
 
 uint64_t GenerateurParkMiller::get_max() const {
@@ -34,14 +34,7 @@ uint64_t GenerateurParkMiller::get_seed() const{
 }
 
 void GenerateurParkMiller::set_seed(const uint64_t seed) {
-    try
-    {
-        m_generator.set_seed(seed);
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << std::endl;
-    }
+    m_generator.set_seed(seed);
 }
 
 void GenerateurParkMiller::reset_seed() {
@@ -54,4 +47,5 @@ uint64_t* GenerateurParkMiller::generate() {
     {
         ret[i] = m_generator.generate();
     }
+    return ret;
 }
