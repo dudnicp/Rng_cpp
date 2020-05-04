@@ -1,5 +1,8 @@
 #include "ParkMiller.h"
+
 #include <cmath>
+#include <exception>
+#include <iostream>
 
 ParkMiller::ParkMiller() : m_seed(1) {}
 
@@ -15,14 +18,14 @@ ParkMiller& ParkMiller::operator=(const ParkMiller &other) {
     return *this;
 }
 
-unsigned long long ParkMiller::get_max() const {
+uint64_t ParkMiller::get_max() const {
     return m;
 }
 
-void ParkMiller::set_seed(unsigned long long seed) {
-    unsigned long long gcd = seed;
-    unsigned long long temp_m = m;
-    unsigned long long temp;
+void ParkMiller::set_seed(uint64_t seed) {
+    uint64_t gcd = seed;
+    uint64_t temp_m = m;
+    uint64_t temp;
     while (temp_m != 0) {
         temp = temp_m;
         temp_m = gcd % temp_m;
@@ -32,15 +35,15 @@ void ParkMiller::set_seed(unsigned long long seed) {
     if (gcd == 1) {
         m_seed = seed;
     } else {
-        throw InvalidSeed();
+        throw std::invalid_argument("Graine invalide");
     }  
 }
 
-unsigned long long ParkMiller::get_seed() const {
+uint64_t ParkMiller::get_seed() const {
     return m_seed;
 }
 
-unsigned long long ParkMiller::generate() {
-    m_seed = (a * (m_seed - (long)floor(m_seed/q) * q) - r * (long)floor(m_seed/q)) % m;
+uint64_t ParkMiller::generate() {
+    m_seed = (a * (m_seed - (uint64_t)floor(m_seed/q) * q) - r * (uint64_t)floor(m_seed/q)) % m;
     return m_seed;
 }

@@ -1,3 +1,8 @@
+#ifndef GENERATEURNOMBREALEATOIRE_H
+#define GENERATEURNOMBREALEATOIRE_H
+
+#include <cstdint>
+
 class GenerateurNombreAleatoire
 {
 protected:
@@ -12,15 +17,16 @@ public:
     void set_dim(const int dim);
     int get_dim() const;
 
-    virtual unsigned long long get_max() const = 0;
+    virtual uint64_t get_max() const = 0;
 
 
     virtual GenerateurNombreAleatoire* clone() = 0;
 
-    virtual void set_seed(const unsigned long long seed) = 0;
-    virtual unsigned long long get_seed() const = 0;
+    virtual void set_seed(const uint64_t seed) = 0;
+    virtual uint64_t get_seed() const = 0;
     virtual void reset_seed() = 0;
 
-    virtual unsigned long long* generate() = 0;
+    virtual uint64_t* generate() = 0;
 };
 
+#endif

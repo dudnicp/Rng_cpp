@@ -2,12 +2,12 @@ cmake_minimum_required(VERSION 2.8)
 
 set(CMAKE_CXX_FLAGS "-g -Wall")
 
-project(TP1_dudnicp_deleplaa)
+project(TP2_dudnicp_deleplaa)
 
 add_subdirectory(src)
 add_subdirectory(doc)
-add_subdirectory(test)
 add_subdirectory(examples)
+add_subdirectory(test)
 enable_testing()
 
 file(GLOB allTests test/*.cpp)

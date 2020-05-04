@@ -1,8 +1,5 @@
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
-file(COPY init_files/ DESTINATION ${CMAKE_BINARY_DIR}/test)
-file(COPY init_files/ DESTINATION ${CMAKE_BINARY_DIR})
-
 file(GLOB allTests *.cpp)
 
 foreach(test ${allTests})
@@ -10,5 +7,3 @@ foreach(test ${allTests})
     add_executable(${testName} ${test})
     target_link_libraries(${testName} dvector)
 endforeach(test)
-
-

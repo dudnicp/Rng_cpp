@@ -1,26 +1,28 @@
-#include "InvalidSeed.h"
+#ifndef PARKMILLER_H
+#define PARKMILLER_H
 
+#include <cstdint>
 
 class ParkMiller
 {
 private:
-    unsigned long long m_seed;
-    const unsigned long long a = 16807;
-    const unsigned long long m = 2147483647;
-    const unsigned long long q = 127773;
-    const unsigned long long r = 2836;
+    uint64_t m_seed;
+    const uint64_t a = 16807;
+    const uint64_t m = 2147483647;
+    const uint64_t q = 127773;
+    const uint64_t r = 2836;
 public:
     ParkMiller();
     ~ParkMiller();
     ParkMiller(const ParkMiller &other);
     ParkMiller& operator=(const ParkMiller &other);
     
-    unsigned long long generate();
+    uint64_t generate();
 
-    unsigned long long get_max() const;
+    uint64_t get_max() const;
 
-    void set_seed(const unsigned long long seed);
-    unsigned long long get_seed() const;
+    void set_seed(const uint64_t seed);
+    uint64_t get_seed() const;
 };
 
-
+#endif

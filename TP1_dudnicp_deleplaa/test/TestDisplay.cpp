@@ -1,10 +1,10 @@
 #include "Dvector.h"
-#include <iostream>
-#include <cassert>
+#include "MyTest.h"
+
 #include <sstream>
 
 /**
- * \file test_display.cpp
+ * \file TestDisplay.cpp
  * \brief Tests de la fonction display() de la classe Dvector
  * \author Paul Dudnic & Adrien Deleplace
  * \version 1.0
@@ -13,12 +13,10 @@
 
 int main(int argc, char const *argv[])
 {
-    std::cout << "--- Test display() ---" << std::endl;
-    Dvector a(3,2);
     std::stringstream str;
-    a.display(str);
-    assert(str.str() == "2\n2\n2\n");
-    std::cout << "--- OK ---" << std::endl << std::endl;
+    Dvector v(3, 2.);
+    v.display(str);
+    TEST_EQ(str.str(), std::string("2\n2\n2\n"));
 
     return EXIT_SUCCESS;
 }
