@@ -37,6 +37,7 @@ make
 
 ```bash
 make doc
+```
 
 - Lancer les tests unitaires sur les méthodes de la classe Dvector
 
@@ -51,12 +52,13 @@ make doc
   ```
 
 - Executer des examples
-Plusieurs exemples sont à disposition (principalement pour répondre aux questions du TP) : DemoQ1 et DemoComplete.
-Après compliation, toujours depuis **build**
 
-```bash
-examples/<nom_exemple>
-```
+  Plusieurs exemples sont à disposition (principalement pour répondre aux questions du TP) : DemoQ1 et DemoComplete.
+  Après compliation, toujours depuis **build**
+
+  ```bash
+  examples/<nom_exemple>
+  ```
 
 - Supprimer les executables compilés
 
