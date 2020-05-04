@@ -3,6 +3,14 @@
 #include <fstream>
 #include <cstring>
 
+/**
+ * \file Dvector.cpp
+ * \brief Vecteur de doubles
+ * \author Paul Dudnic & Adrien Deleplace
+ * \version 1.0
+ * \date 19/05/2020
+ */
+
 Dvector::Dvector()
 {
     m_size = 0;
@@ -34,9 +42,11 @@ Dvector::Dvector(const int size, const double val)
     }
 }
 
-Dvector::Dvector(const Dvector &other) : Dvector()
+Dvector::Dvector(const Dvector &other)
 {
     std::cout << "Constructeur par copie" << std::endl;
+    m_size = 0;
+    m_coords = nullptr;
     *this = other;
 }
 
@@ -345,19 +355,7 @@ Dvector &Dvector::operator=(const Dvector &other)
 // {
 //     if (this != &other)
 //     {
-//         if (m_size != other.m_size)
-//         {
-//             m_size = other.m_size;
-//             delete[] m_coords;
-//             if (m_size == 0)
-//             {
-//                 m_coords = nullptr;
-//             }
-//             else
-//             {
-//                 m_coords = new double[m_size];
-//             }
-//         }
+//         setSize(other.m_size);
 //         for (int i = 0; i < m_size; i++)
 //         {
 //             m_coords[i] = other.m_coords[i];

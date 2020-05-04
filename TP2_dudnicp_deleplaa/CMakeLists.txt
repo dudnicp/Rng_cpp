@@ -6,6 +6,7 @@ project(TP2_dudnicp_deleplaa)
 
 add_subdirectory(src)
 add_subdirectory(doc)
+add_subdirectory(examples)
 add_subdirectory(test)
 enable_testing()
 
