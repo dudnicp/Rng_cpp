@@ -1,13 +1,20 @@
-# Le fichier doit être renommé CMakeLists.txt
-cmake_minimum_required(VERSION 2.8.2)
-
-project(TP1_dudnicp_deleplaa)
+cmake_minimum_required(VERSION 2.8)
 
 set(CMAKE_CXX_FLAGS "-g -Wall")
 
-set(SOURCE_FILES 
-src/Dvector.cpp
-src/Dvector.h
-src/Test_Dvector.cpp)
+project(TP3_dudnicp_deleplaa)
 
-add_executable(test_tp2 ${SOURCE_FILES})
+#add_subdirectory(src)
+add_subdirectory(doc)
+# add_subdirectory(examples)
+# add_subdirectory(test)
+# enable_testing()
+
+# file(GLOB allTests test/*.cpp)
+
+# foreach(test ${allTests})
+#     get_filename_component(testName ${test} NAME_WE)
+#     add_test(NAME ${testName} COMMAND ${testName})
+# endforeach(test)
+
+# add_custom_target(check COMMAND make test VERBATIM)

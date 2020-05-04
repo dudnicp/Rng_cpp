@@ -1,5 +1,13 @@
 #include "GenerateurNombreAleatoire.h"
 
+/**
+ * \file GenerateurNombreAleatoire.cpp
+ * \brief Générateur de nombres entiers aléatoires
+ * \author Paul Dudnic & Adrien Deleplace
+ * \version 1.0
+ * \date 19/05/2020
+ */
+
 GenerateurNombreAleatoire::GenerateurNombreAleatoire(int dim) : m_dim(dim) {}
 
 GenerateurNombreAleatoire::~GenerateurNombreAleatoire() {}

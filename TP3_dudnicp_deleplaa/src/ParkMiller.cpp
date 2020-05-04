@@ -4,6 +4,14 @@
 #include <exception>
 #include <iostream>
 
+/**
+ * \file ParkMiller.cpp
+ * \brief Méthode de Park-Miller pour la génération de nombres aléatoires
+ * \author Paul Dudnic & Adrien Deleplace
+ * \version 1.0
+ * \date 19/05/2020
+ */
+
 ParkMiller::ParkMiller() : m_seed(1) {}
 
 ParkMiller::~ParkMiller() {};

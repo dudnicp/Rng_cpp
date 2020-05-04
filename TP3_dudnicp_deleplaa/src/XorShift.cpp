@@ -1,6 +1,14 @@
 #include "XorShift.h"
 #include <limits>
 
+/**
+ * \file XorShift.cpp
+ * \brief Méthode XorShift pour la génération de nombres aléatoires
+ * \author Paul Dudnic & Adrien Deleplace
+ * \version 1.0
+ * \date 19/05/2020
+ */
+
 XorShift::XorShift() : m_seed(1) {}
 
 XorShift::~XorShift() {}

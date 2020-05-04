@@ -4,6 +4,14 @@
 #include <iostream>
 #include <sstream>
 
+/**
+ * \file DistributionNormale.cpp
+ * \brief Variable aléatoire suivant une distribution normale
+ * \author Paul Dudnic & Adrien Deleplace
+ * \version 1.0
+ * \date 19/05/2020
+ */
+
 DistributionNormale::DistributionNormale() : m_mean(0.), m_stdev(1.) {}
 
 DistributionNormale::DistributionNormale(const double mean, const double stdev) : m_mean(mean), m_stdev(stdev) {}
