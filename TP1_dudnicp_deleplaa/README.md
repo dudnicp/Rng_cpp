@@ -21,44 +21,7 @@ cmake ..
 
 Commandes à lancer depuis le répertoire **build** du projet
 
-- Générer la documentation du projet
-
-```bash
-make doc
-```
-
-- Lancer une courte expérience montrant les différences entre les deux écritures
-
-```C++
-Dvector x;
-x = Dvector(3, 1);
-```
-
-et
-
-```C++
- Dvector x = Dvector(3, 1);
-```
-
-```bash
-make demo
-```
-
-- Lancer les tests unitaires sur les méthodes de la classe Dvector
-
-  - Apercu abrégé
-
-  ```bash
-  make test
-  ```
-
-  - Apercu complet
-
-  ```bash
-  make check
-  ```
-
-- Compiler les executables de tests ainsi que la documentation du projet
+- Compiler les executables de tests, les exemples ainsi que la documentation du projet
 
 ```bash
 make all
@@ -68,6 +31,31 @@ ou tout simplement
 
 ```bash
 make
+```
+
+- Générer la documentation du projet
+
+```bash
+make doc
+
+- Lancer les tests unitaires sur les méthodes de la classe Dvector
+
+  ```bash
+  make test
+  ```
+
+  Equivalent:  
+
+  ```bash
+  make check
+  ```
+
+- Executer des examples
+Plusieurs exemples sont à disposition (principalement pour répondre aux questions du TP) : DemoQ1 et DemoComplete.
+Après compliation, toujours depuis **build**
+
+```bash
+examples/<nom_exemple>
 ```
 
 - Supprimer les executables compilés

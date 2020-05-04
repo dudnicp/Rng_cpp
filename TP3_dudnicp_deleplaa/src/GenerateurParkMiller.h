@@ -1,3 +1,6 @@
+#ifndef GENERATEURPARKMILLER_H
+#define GENERATEURPARKMILLER_H
+
 #include "GenerateurNombreAleatoire.h"
 #include "ParkMiller.h"
 
@@ -11,13 +14,15 @@ public:
     GenerateurParkMiller(const GenerateurParkMiller &other);
     GenerateurParkMiller& operator=(const GenerateurParkMiller &other);
 
-    virtual unsigned long long get_max() const;
+    virtual uint64_t get_max() const;
 
     virtual GenerateurParkMiller* clone();
 
-    virtual void set_seed(const unsigned long long seed);
-    virtual unsigned long long get_seed() const;
+    virtual void set_seed(const uint64_t seed);
+    virtual uint64_t get_seed() const;
     virtual void reset_seed();
 
-    virtual unsigned long long* generate();
+    virtual uint64_t* generate();
 };
+
+#endif
