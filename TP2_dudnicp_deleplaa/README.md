@@ -51,7 +51,7 @@ make doc
   ```
 
 - Executer des examples
-Plusieurs exemples sont à disposition (principalement pour répondre aux questions du TP) : DemoQ1 et DemoComplete.
+Plusieurs exemples sont à disposition (principalement pour répondre aux questions du TP) : DemoQ2, DemoQ4 et DemoComplete.
 Après compliation, toujours depuis **build**
 
 ```bash
