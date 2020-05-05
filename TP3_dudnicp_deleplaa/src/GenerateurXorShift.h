@@ -49,7 +49,8 @@ public:
 
 
     /**
-     * \brief Identique à \see operator=
+     * \brief Identique à operator=
+     * \see operator=
      */
     void clone(const GenerateurXorShift &other);
 

@@ -1,8 +1,5 @@
 #include "ParkMiller.h"
-
 #include <cmath>
-#include <exception>
-#include <iostream>
 
 /**
  * \file ParkMiller.cpp

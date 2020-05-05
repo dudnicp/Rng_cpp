@@ -1,7 +1,8 @@
 #ifndef XORSHIFT_H
 #define XORSHIFT_H
 
-#include <cstdint>
+#include <iostream>
+
 
 /**
  * \file XorShift.h

@@ -1,5 +1,4 @@
 #include "XorShift.h"
-#include <limits>
 
 /**
  * \file XorShift.cpp
@@ -24,7 +23,7 @@ XorShift& XorShift::operator=(const XorShift &other) {
 }
 
 uint64_t XorShift::get_max() const {
-    return std::numeric_limits<uint64_t>::max();
+    return UINT64_MAX;
 }
 
 uint64_t XorShift::get_seed() const {
@@ -32,13 +31,18 @@ uint64_t XorShift::get_seed() const {
 }
 
 void XorShift::set_seed(const uint64_t seed) {
+    if (seed == 0)
+    {
+        throw std::invalid_argument("Graine invalide");
+    }
+    
     m_seed = seed;
 }
 
 uint64_t XorShift::generate() {
-    m_seed = m_seed | (m_seed << a1);
-    m_seed = m_seed | (m_seed >> a2);
-    m_seed = m_seed | (m_seed << a3);
+    m_seed = m_seed & (m_seed << a1);
+    m_seed = m_seed & (m_seed >> a2);
+    m_seed = m_seed & (m_seed << a3);
 
     return m_seed;
 }

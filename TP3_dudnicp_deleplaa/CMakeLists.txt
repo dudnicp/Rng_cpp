@@ -7,7 +7,7 @@ project(TP3_dudnicp_deleplaa)
 #add_subdirectory(src)
 add_subdirectory(doc)
 # add_subdirectory(examples)
-# add_subdirectory(test)
+add_subdirectory(test)
 # enable_testing()
 
 # file(GLOB allTests test/*.cpp)

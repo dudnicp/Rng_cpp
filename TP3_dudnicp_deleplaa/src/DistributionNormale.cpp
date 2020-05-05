@@ -87,26 +87,13 @@ double DistributionNormale::inv_cdf(const double x) const
         throw std::domain_error(error.str());
     }
     
-    double left = 0.;
-    double right = 1.;
-    double error = 0.0001;
-    double temp = 0;
-    while (right - left > error)
-    {
-        temp = (left + right) / 2.;
-        double y = cdf(temp);
-        if (y > x)
-        {
-            right = temp;
-        }
-        else if (y < x)
-        {
-            left = temp;
-        }
-        else
-        {
-            break;
-        }
-    }
-    return temp;
+    double z = 2.*x + 1.;
+    double inv_erf = sqrt(M_PI) * (z +
+                                M_PI/12. * pow(z, 3) + 
+                                7. * pow(M_PI, 2)/480. * pow(z, 5) +
+                                127. * pow(M_PI, 3)/40320. * pow(z, 7) +
+                                4369. * pow(M_PI, 4)/5806080. * pow(z, 9) +
+                                34807. * pow(M_PI, 5)/182476800. * pow(z, 11));
+
+    return m_stdev * M_SQRT2 * inv_erf + m_mean;
 }

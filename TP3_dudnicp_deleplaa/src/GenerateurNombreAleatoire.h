@@ -61,7 +61,8 @@ public:
     int get_dim() const;
 
     /**
-     * \brief Identique à \see operator=
+     * \brief Identique à operator=
+     * \see operator=
      */
     void clone(const GenerateurNombreAleatoire &other);
 

@@ -1,7 +1,7 @@
 #ifndef PARKMILLER_H
 #define PARKMILLER_H
 
-#include <cstdint>
+#include <iostream>
 
 /**
  * \file ParkMiller.h
@@ -20,7 +20,7 @@ class ParkMiller
 private:
     uint64_t m_seed; ///< Graine de la méthode
     const uint64_t a = 16807; ///< Un parametre de la méthode
-    const uint64_t m = 2147483647; ///< Un parametre de la méthode
+    const uint64_t m = INT32_MAX; ///< Un parametre de la méthode
     const uint64_t q = 127773; ///< Un parametre de la méthode
     const uint64_t r = 2836; ///< Un parametre de la méthode
 
