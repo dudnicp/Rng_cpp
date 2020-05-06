@@ -2,7 +2,7 @@
 #include "Dvector.h"
 
 /**
- * \file TestPlusOperator.cpp
+ * \file TestSelfPlusOperator.cpp
  * \brief Tests sur l'opérateur += de la classe Dvector
  * \author Paul Dudnic & Adrien Deleplace
  * \version 1.0

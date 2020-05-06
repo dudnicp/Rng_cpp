@@ -16,7 +16,7 @@ int main(int argc, char const *argv[])
     // Test Constructeur copie Dvector
     Dvector v(test);
     TEST_EQ(v.size(), 3);
-    TEST_NEQ(v.coords(), (double *) nullptr);
+    TEST_NEQ(v.coords(), nullptr);
     for (int i = 0; i < v.size(); i++)
     {
         TEST_EQ(v.coords()[i], 2.);
@@ -25,7 +25,7 @@ int main(int argc, char const *argv[])
     // Test Constructeur copie Dvector nul
     Dvector w(nullVect);
     TEST_EQ(w.size(), 0);
-    TEST_EQ(w.coords(), (double *) nullptr);    
+    TEST_EQ(w.coords(), nullptr);    
 
     return EXIT_SUCCESS;
 }
