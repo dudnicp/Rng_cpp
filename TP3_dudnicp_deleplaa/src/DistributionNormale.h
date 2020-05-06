@@ -24,7 +24,7 @@ private:
     double m_stdev; ///< Écart type de la distribution
     
 public:
-    static const double TWO_PI = 2.0 * M_PI;
+    static constexpr double TWO_PI = 2.0 * M_PI;
 
     /**
      * \brief Construit une distribution normale de moyenne 0, d'écart type 1

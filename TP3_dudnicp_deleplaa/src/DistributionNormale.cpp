@@ -61,7 +61,7 @@ double DistributionNormale::stdev() const
     return m_stdev;
 }
 
-double DistributionNormale::mean() const
+double DistributionNormale::var() const
 {
     return m_stdev * m_stdev;
 }

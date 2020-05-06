@@ -53,7 +53,7 @@ void TEST_PRECISION(const T &arg0, const T &arg1, const T &epsilon)
 {
     if (arg0 - arg1 > epsilon && arg1 - arg0 > epsilon)
     {
-        exit(EXIT_FAILURE)
+        exit(EXIT_FAILURE);
     }
 }
 

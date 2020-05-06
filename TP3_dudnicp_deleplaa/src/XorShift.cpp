@@ -31,7 +31,7 @@ uint64_t XorShift::get_seed() const {
 }
 
 void XorShift::set_seed(const uint64_t seed) {
-    if (seed == 0)
+    if (seed < 1)
     {
         throw std::invalid_argument("Graine invalide");
     }
@@ -40,9 +40,9 @@ void XorShift::set_seed(const uint64_t seed) {
 }
 
 uint64_t XorShift::generate() {
-    m_seed = m_seed & (m_seed << a1);
-    m_seed = m_seed & (m_seed >> a2);
-    m_seed = m_seed & (m_seed << a3);
+    m_seed ^= (m_seed << a1);
+    m_seed ^= (m_seed >> a2);
+    m_seed ^= (m_seed << a3);
 
     return m_seed;
 }
