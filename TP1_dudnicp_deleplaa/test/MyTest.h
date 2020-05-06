@@ -41,20 +41,4 @@ void TEST_NEQ(const T1 &arg0, const T2 &arg1)
     }
 }
 
-/**
- * \brief Teste si deux valeurs sont "suffisamment" proches
- * \param[in] arg0 Une valeur à comparer
- * \param[in] arg1 Une autre valeur à comparer
- * \param[in] epsilon L'écart toléré entre les deux valeurs
- * \attention Nécessite la définition des opérateurs - et > des objets comparés
- */
-template <typename T>
-void TEST_PRECISION(const T &arg0, const T &arg1, const T &epsilon)
-{
-    if (arg0 - arg1 > epsilon && arg1 - arg0 > epsilon)
-    {
-        exit(EXIT_FAILURE)
-    }
-}
-
 #endif
