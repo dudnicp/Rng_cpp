@@ -13,7 +13,7 @@ int main(int argc, char const *argv[])
 {
     Dvector v;
     TEST_EQ(v.size(), 0);
-    TEST_EQ(v.coords(), (double *) nullptr);
+    TEST_EQ(v.coords(), nullptr);
 
     return EXIT_SUCCESS;
 }

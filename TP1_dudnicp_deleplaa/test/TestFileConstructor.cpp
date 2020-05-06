@@ -14,7 +14,7 @@ int main(int argc, char const *argv[])
     // Test initialisation fichier vide
     Dvector v("EmptyInit.txt");
     TEST_EQ(v.size(), 0);
-    TEST_EQ(v.coords(), (double *) nullptr);
+    TEST_EQ(v.coords(), nullptr);
 
     // Tests avec fichiers non vide
     Dvector* tab = new Dvector[3];
@@ -25,7 +25,7 @@ int main(int argc, char const *argv[])
     for (int i = 0; i < 3; i++)
     {
         TEST_EQ(tab[i].size(), 6);
-        TEST_NEQ(tab[i].coords(), (double *) nullptr);
+        TEST_NEQ(tab[i].coords(), nullptr);
         for (int j = 0; j < tab[i].size(); j++)
         {
             TEST_EQ(tab[i].coords()[j], j/10.);
