@@ -94,6 +94,7 @@ void uniformFrequencyChiSquaredTest(const double *data, size_t n)
     for (size_t i = 0; i < nClasses; i++)
     {
         expected[i] = ((double)n) / nClasses;
+
     }
 
     // calculs des fréquences obtenues
@@ -134,7 +135,7 @@ void normalFrequencyChiSquaredTest(const double *data, size_t n)
     {
         for (size_t j = 0; j < nClasses; j++)
         {
-            if (data[i] < expected[j])
+            if (data[i] < inv_cdf[j])
             {
                 obtained[j]++;
                 break;
@@ -165,7 +166,7 @@ void autocorrelationTest(const double *data, const size_t n)
 
             // calcul rho
             double rho = 0.;
-            for (size_t k = 0; k < M + 1; k++)
+            for (size_t k = 0; k < (unsigned) (M + 1); k++)
             {
                 rho += data[i + k * m] * data[(k + 1) * m];
             }
@@ -200,7 +201,7 @@ std::vector<Run> computeRuns(const double *data, size_t n)
     runs.push_back({rising, 1});
     for (size_t i = 2; i < n; i++)
     {
-        if (data[i] >= data[i-1] xor rising)
+        if ((data[i] >= data[i-1]) xor rising)
         {
             runs.back().length ++;
         }
