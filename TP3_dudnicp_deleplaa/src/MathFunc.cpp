@@ -9,8 +9,16 @@ int factorial(const int n)
     {
         throw std::domain_error("Impossible d'appeller la fonction factorial sur des entiers négatifs");
     }
-
-    return (n == 0 || n == 1) ? 1 : factorial(n - 1);
+    if (n == 0 || n == 1)
+    {
+        return 1;
+    }
+    else
+    {
+        return factorial(n-1);
+    }
+    
+    
 }
 
 double G(const double x)

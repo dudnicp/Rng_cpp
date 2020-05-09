@@ -5,9 +5,9 @@
 #include <algorithm>
 #include <cstring>
 #include <cmath>
+#include <vector>
 
 
-// Test du Chi2
 void chiSquaredTest(const double *obtained, const double *expected, const int n, const double alpha)
 {
     // Calcul de la p-value obtenue
@@ -27,7 +27,7 @@ void chiSquaredTest(const double *obtained, const double *expected, const int n,
     }
 }
 
-// Test de loi normale
+
 void stdNormalTest(const double z, const double alpha)
 {
     DistributionNormale stdNormal;
@@ -43,8 +43,6 @@ void stdNormalTest(const double z, const double alpha)
     }
 }
 
-// Test de H_null : data suit une loi uniforme sur [0, 1] avec le test de Kolmogorov-Smirnov
-// On suppose n >> 100 pour avoir des tests aussi précis que possible
 void uniformFrequencyKSTest(const double *data, const int n)
 {
     // copie des données
@@ -91,8 +89,7 @@ void uniformFrequencyKSTest(const double *data, const int n)
     }
 }
 
-// Test de H_null : data suit une loi uniforme sur [0, 1] avec le test du Chi2
-// On suppose n >> 100 pour avoir des tests aussi précis que possible
+
 void uniformFrequencyChiSquaredTest(const double *data, int n)
 {
     int nClasses = 100;
@@ -117,11 +114,10 @@ void uniformFrequencyChiSquaredTest(const double *data, int n)
         }
     }
 
-    chiSquaredTest(obtained, expected, nClasses, ALPHA);
+    chiSquaredTest(obtained, expected, nClasses);
 }
 
-// Test de H_null : data suit une loi normale N(0,1 avec le test du Chi2
-// On suppose n >> 100 pour avoir des tests aussi précis que possible
+
 void normalFrequencyChiSquaredTest(const double *data, int n)
 {
     int nClasses = 100;
@@ -150,11 +146,10 @@ void normalFrequencyChiSquaredTest(const double *data, int n)
         }
     }
 
-    chiSquaredTest(obtained, expected, nClasses, ALPHA);
+    chiSquaredTest(obtained, expected, nClasses);
 }
 
-// Test de H_null : nombres générées aléatoirement sont indépendants
-// On suppose n >> 100 pour avoir des tests aussi précis que possible
+
 void autocorrelationTest(const double *data, const int n)
 {
     std::vector<double> obtainedZ;
@@ -190,10 +185,11 @@ void autocorrelationTest(const double *data, const int n)
 
     double maxZ = *(std::max_element(obtainedZ.begin(), obtainedZ.end()));
 
-    stdNormalTest(maxZ, ALPHA);
+    stdNormalTest(maxZ);
 }
 
-void runsNumberTest(const double *data, const int n)
+
+void runsUDNumberTest(const double *data, const int n)
 {
     // calcul du nombre de runs up and down
     int nRuns = 1;
@@ -212,27 +208,23 @@ void runsNumberTest(const double *data, const int n)
     double sigma_nRuns = sqrt((16. * n - 29.) / 90.);
     double Z_nRuns = (nRuns - mu_nRuns) / sigma_nRuns;
 
-    stdNormalTest(Z_nRuns, ALPHA);
+    stdNormalTest(Z_nRuns);
 }
 
-void aboveAndBelowMeanTest(const double *data, const int n)
+
+void runsABMNumberTest(const double *data, const int n)
 {
-    // Calcul de la moyenne et du nombre de runs up and down en même temps
-    int nRuns = 1;
+    // Calcul de la moyenne
     bool risingRun = (data[1] >= data[0]);
     double mean = data[0] + data[1];
     for (int i = 2; i < n; i++)
     {
-        if ((data[i] >= data[i - 1]) xor risingRun)
-        {
-            nRuns++;
-            risingRun = !risingRun;
-        }
         mean += data[i];
     }
     mean /= n;
 
     // calcul du nombre de valeurs au dessus et en dessous de la moyenne
+    int nRuns = 1;
     int nAbove = 0;
     int nBelow = 0;
     for (int i = 0; i < n; i++)
@@ -251,10 +243,11 @@ void aboveAndBelowMeanTest(const double *data, const int n)
     double sigma_AB = sqrt((2. * nAbove * nBelow * (2. * nAbove * nBelow - n)) / (n * n * (n - 1.)));
     double Z_AB = (nRuns - mu_AB) / sigma_AB;
 
-    stdNormalTest(Z_AB, ALPHA);
+    stdNormalTest(Z_AB);
 }
 
-void runsLengthTest(const double *data, const int n)
+
+void runsUDLengthTest(const double *data, const int n)
 {
     // calcul du nombre et de la taille des runs ups and down
     // de chaque taille entre 1 et n-1 (donc indice tableau entre 0 et n-2)
@@ -286,10 +279,11 @@ void runsLengthTest(const double *data, const int n)
     }
     expected[n - 2] = 2. / factorial(n);
 
-    chiSquaredTest(runs, expected, n - 1, ALPHA);
+    chiSquaredTest(runs, expected, n - 1);
 }
 
-void runsAboveAndBelowMeanTest(const double* data, const int n) {
+
+void runsABMLengthTest(const double* data, const int n) {
     double mean = 0;
     for (int i = 0; i < n; i++)
     {
@@ -335,5 +329,5 @@ void runsAboveAndBelowMeanTest(const double* data, const int n) {
         expected[i] = n*u/e;
     }
 
-    chiSquaredTest(runs, expected, n, ALPHA);   
+    chiSquaredTest(runs, expected, n);
 }
