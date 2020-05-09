@@ -1,25 +1,24 @@
 #ifndef STATISTICALTESTS_H
 #define STATISTICALTESTS_H
 
+#define ALPHA 0.05
+
 #include <vector>
 
 
 
-void uniformFrequencyKSTest(const double* data, const size_t n);
-void uniformFrequencyChiSquaredTest(const double* data, const size_t n);
-void normalFrequencyChiSquaredTest(const double* data, const size_t n);
-void chiSquaredTest(const double* obtained, const double *expected, const size_t n);
-void autocorrelationTest(const double* data, const size_t n);
-void runsTest(const double* data, const size_t n);
+void chiSquaredTest(const double* obtained, const double *expected, const int n, const double alpha);
+void stdNormalTest(const double z, const double alpha);
 
-struct Run
-{
-    bool rising;
-    size_t length;
-};
+void uniformFrequencyKSTest(const double* data, const int n);
+void uniformFrequencyChiSquaredTest(const double* data, const int n);
+void normalFrequencyChiSquaredTest(const double* data, const int n);
 
+void autocorrelationTest(const double* data, const int n);
 
-std::vector<Run> computeRuns(const double* data, size_t n);
-void aboveAndBelowMean(const double* data, size_t n, int &above, int &below);
+void runsNumberTest(const double* data, const int n);
+void aboveAndBelowMeanTest(const double* data, const int n);
+void runsLengthTest(const double* data, const int n);
+void runsAboveAndBelowMeanTest(const double* data, const int n);
 
 #endif
