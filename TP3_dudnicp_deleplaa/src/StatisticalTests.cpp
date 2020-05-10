@@ -7,7 +7,6 @@
 #include <cmath>
 #include <vector>
 
-
 void chiSquaredTest(const double *obtained, const double *expected, const int n, const double alpha)
 {
     // Calcul de la p-value obtenue
@@ -26,7 +25,6 @@ void chiSquaredTest(const double *obtained, const double *expected, const int n,
         exit(EXIT_FAILURE);
     }
 }
-
 
 void stdNormalTest(const double z, const double alpha)
 {
@@ -89,7 +87,6 @@ void uniformFrequencyKSTest(const double *data, const int n)
     }
 }
 
-
 void uniformFrequencyChiSquaredTest(const double *data, int n)
 {
     int nClasses = 100;
@@ -116,7 +113,6 @@ void uniformFrequencyChiSquaredTest(const double *data, int n)
 
     chiSquaredTest(obtained, expected, nClasses);
 }
-
 
 void normalFrequencyChiSquaredTest(const double *data, int n)
 {
@@ -148,7 +144,6 @@ void normalFrequencyChiSquaredTest(const double *data, int n)
 
     chiSquaredTest(obtained, expected, nClasses);
 }
-
 
 void autocorrelationTest(const double *data, const int n)
 {
@@ -188,7 +183,6 @@ void autocorrelationTest(const double *data, const int n)
     stdNormalTest(maxZ);
 }
 
-
 void runsUDNumberTest(const double *data, const int n)
 {
     // calcul du nombre de runs up and down
@@ -211,32 +205,26 @@ void runsUDNumberTest(const double *data, const int n)
     stdNormalTest(Z_nRuns);
 }
 
-
 void runsABMNumberTest(const double *data, const int n)
 {
     // Calcul de la moyenne
-    bool risingRun = (data[1] >= data[0]);
-    double mean = data[0] + data[1];
-    for (int i = 2; i < n; i++)
-    {
-        mean += data[i];
-    }
-    mean /= n;
+    double m = mean(data, n);
 
     // calcul du nombre de valeurs au dessus et en dessous de la moyenne
     int nRuns = 1;
-    int nAbove = 0;
-    int nBelow = 0;
-    for (int i = 0; i < n; i++)
+    bool runAboveMean = (data[0] > m);
+    int nAbove = runAboveMean;
+    int nBelow = !runAboveMean;
+    
+    for (int i = 1; i < n; i++)
     {
-        if (data[i] > mean)
+        bool currentAbove = (data[i] > m);
+        if (currentAbove xor runAboveMean)
         {
-            nAbove++;
+            nRuns ++;
         }
-        else
-        {
-            nBelow++;
-        }
+        nAbove += currentAbove;
+        nBelow += !currentAbove;
     }
 
     double mu_AB = (2. * nAbove * nBelow) / n + 0.5;
@@ -245,7 +233,6 @@ void runsABMNumberTest(const double *data, const int n)
 
     stdNormalTest(Z_AB);
 }
-
 
 void runsUDLengthTest(const double *data, const int n)
 {
@@ -265,9 +252,8 @@ void runsUDLengthTest(const double *data, const int n)
         }
         else
         {
-            currentRunLength ++;
+            currentRunLength++;
         }
-        
     }
 
     // calcul des valeurs attendues pour le test du chi2
@@ -282,40 +268,35 @@ void runsUDLengthTest(const double *data, const int n)
     chiSquaredTest(runs, expected, n - 1);
 }
 
-
-void runsABMLengthTest(const double* data, const int n) {
-    double mean = 0;
-    for (int i = 0; i < n; i++)
-    {
-        mean += data[i];
-    }
-    mean /= n;
+void runsABMLengthTest(const double *data, const int n)
+{
+    double m = mean(data, n);
 
     // calcul du nombre et de la taille des runs above/below mean et du nombre de valeurs au dessus/en dessous de la moyenne en même temps
     double runs[n] = {0};
     int nRuns = 1;
-    bool runAboveMean = (data[0] > mean);
-    int nAbove = 0;
-    int nBelow = 0;
+    bool runAboveMean = (data[0] > m);
+    int nAbove = runAboveMean;
+    int nBelow = !runAboveMean;
 
     for (int i = 1; i < n; i++)
     {
         int currentRunLength = 0;
-        bool currentAbove = (data[i] > mean);
-        if (currentAbove xor runAboveMean)/* code */
+        bool currentAbove = (data[i] > m);
+        if (currentAbove xor runAboveMean) /* code */
         {
-            runs[currentRunLength] ++;
-            nRuns ++;
+            runs[currentRunLength]++;
+            nRuns++;
             runAboveMean = !runAboveMean;
         }
         else
         {
-            currentRunLength ++;
+            currentRunLength++;
         }
-        nAbove += runAboveMean;
-        nBelow += !runAboveMean;
+        nAbove += currentAbove;
+        nBelow += !currentAbove;
     }
-    
+
     // calcul des valeurs attendues pour le test du chi2
     double expected[n];
     for (int i = 0; i < n; i++)
@@ -323,10 +304,10 @@ void runsABMLengthTest(const double* data, const int n) {
         int j = i + 1;
         double n1 = nAbove;
         double n2 = nBelow;
-        double u = pow(n1/n, j) * (n2/n) + pow(n2/n, j) * (n1/n);
-        double e = n1/n2 + n2/n1;
+        double u = pow(n1 / n, j) * (n2 / n) + pow(n2 / n, j) * (n1 / n);
+        double e = n1 / n2 + n2 / n1;
 
-        expected[i] = n*u/e;
+        expected[i] = n * u / e;
     }
 
     chiSquaredTest(runs, expected, n);

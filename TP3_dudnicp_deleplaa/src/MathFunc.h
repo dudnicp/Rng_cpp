@@ -9,6 +9,15 @@
  * \date 19/05/2020
  */
 
+
+/**
+ * \brief Calcule la moyenne d'un tableau de valeurs
+ * \param[in] data Un tableau de valeurs
+ * \param[in] n La taille du tableau
+ * \return La moyenne du tableau
+ */
+double mean(const double* data, const int n);
+
 /**
  * \brief Fonction Factorielle
  * \param[in] n Un entier

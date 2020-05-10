@@ -3,6 +3,16 @@
 #include <cmath>
 #include <sstream>
 
+double mean(const double* data, const int n) {
+    double ret = 0;
+    for (int i = 0; i < n; i++)
+    {
+        ret += data[i];
+    }
+    
+    return ret / n;
+}
+
 int factorial(const int n)
 {
     if (n < 0)

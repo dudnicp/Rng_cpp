@@ -66,7 +66,7 @@ void autocorrelationTest(const double* data, const int n);
 void runsUDNumberTest(const double* data, const int n);
 
 /**
- * \brief Vérifie si les valeurs d'un tableau sont vraiment aléatoires en testant le nombre de valeurau dessus et en dessous de la moyenne
+ * \brief Vérifie si les valeurs d'un tableau sont vraiment aléatoires en testant le nombre de runs au dessus et en dessous de la moyenne
  * \param[in] data Le tableau à tester
  * \param[in] n La taille du tableau
  * \throw runtime_error Si n < 1000 (il faut beaucoup de valeurs pour un test significatif)
