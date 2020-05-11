@@ -57,7 +57,7 @@ void uniformFrequencyKSTest(const double *data, const int n)
     {
         cpy[i] = data[i];
     }
-    
+
     std::sort(cpy, cpy + n);
 
     // calcul de D+
@@ -102,12 +102,13 @@ void uniformFrequencyKSTest(const double *data, const int n)
 void uniformFrequencyChiSquaredTest(const double *data, int n)
 {
     int nClasses = 100;
-    double obtained[nClasses] = {0};
-    double expected[nClasses];
+    double *obtained = new double[nClasses];
+    double *expected = new double[nClasses];
 
     for (int i = 0; i < nClasses; i++)
     {
         expected[i] = ((double)n) / nClasses;
+        obtained[i] = 0;
     }
 
     // calculs des fréquences obtenues
@@ -115,7 +116,7 @@ void uniformFrequencyChiSquaredTest(const double *data, int n)
     {
         for (int j = 0; j < nClasses; j++)
         {
-            if (data[i] < ((double)(j + 1)) / n)
+            if (data[i] < (j + 1.) / nClasses)
             {
                 obtained[j]++;
                 break;
@@ -227,13 +228,13 @@ void runsABMNumberTest(const double *data, const int n)
     bool runAboveMean = (data[0] > m);
     int nAbove = runAboveMean;
     int nBelow = !runAboveMean;
-    
+
     for (int i = 1; i < n; i++)
     {
         bool currentAbove = (data[i] > m);
         if (currentAbove xor runAboveMean)
         {
-            nRuns ++;
+            nRuns++;
         }
         nAbove += currentAbove;
         nBelow += !currentAbove;

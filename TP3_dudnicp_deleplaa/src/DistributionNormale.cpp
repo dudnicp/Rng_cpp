@@ -91,10 +91,11 @@ double DistributionNormale::inv_cdf(const double x) const
     double z = 2. * x - 1.;
 
     // calcul des 10 premiers termes de la suite
+    int n = 20;
     double inv_erf = 0;
-    double c[10] = {0};
+    double c[n] = {0};
     c[0] = 1;
-    for (int i = 1; i < 10; i++)
+    for (int i = 1; i < n; i++)
     {
         for (int j = 0; j < i; j++)
         {
@@ -102,7 +103,7 @@ double DistributionNormale::inv_cdf(const double x) const
         }
     }
     
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < n; i++)
     {
         inv_erf += c[i] / (2. * i + 1) * pow(sqrt(M_PI) / 2. * z, 2 * i + 1);
     }

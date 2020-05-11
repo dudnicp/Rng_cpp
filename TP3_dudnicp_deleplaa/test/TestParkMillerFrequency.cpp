@@ -15,9 +15,9 @@ int main(int argc, char const *argv[])
     GenerateurParkMiller parkMiller(dim);
     double *data = parkMiller.generate_uniform();
 
-    std::cout << "--- Test Kolmogorov-Smirnov ---" << std::endl;
-    uniformFrequencyKSTest(data, dim);
-    std::cout << "--- PASSED ---" << std::endl;
+    // std::cout << "--- Test Kolmogorov-Smirnov ---" << std::endl;
+    // uniformFrequencyKSTest(data, dim);
+    // std::cout << "--- PASSED ---" << std::endl;
 
     std::cout << "--- Test Chi2 ---" << std::endl;
     uniformFrequencyChiSquaredTest(data, dim);

@@ -3,7 +3,7 @@
 #include <cmath>
 
 /**
- * \file MathFuncTest.cpp
+ * \file TestMathFunc.cpp
  * \brief Tests sur les fonctions mathématiques auxiliaires
  * \author Paul Dudnic & Adrien Deleplace
  * \version 1.0
@@ -51,8 +51,10 @@ int main(int argc, char const *argv[])
     std::cout << "--- PASSED ---" << std::endl;
 
     std::cout << "--- chi2Cdf ---" << std::endl;
-    TEST_PRECISION(chi2Cdf(0.02, 1), 0.100, 0.001);
-    TEST_PRECISION(chi2Cdf(124.45, 100), 0.950, 0.001);
+    TEST_EQ(chi2Cdf(10., 1), erf(sqrt(10./2.)));
+    TEST_EQ(chi2Cdf(10., 2), 1 - exp(-5.));
+    TEST_PRECISION(chi2Cdf(18.307, 10), 0.95, 5E-3);
+    TEST_PRECISION(chi2Cdf(124.342, 100), 0.95, 5E-3);
     try
     {
         chi2Cdf(10, -1);

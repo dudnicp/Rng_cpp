@@ -1,8 +1,6 @@
 #include "GenerateurXorShift.h"
 #include "StatisticalTests.h"
-#include "MathFunc.h"
 #include <algorithm>
-#include <cstring>
 
 /**
  * \file TestXorShiftFrequency.cpp

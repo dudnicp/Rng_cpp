@@ -72,7 +72,7 @@ double chi2Pdf(const double x, const int df)
         throw std::domain_error(str.str());
     }
 
-    return pow(1. / .2, df / 2.) * pow(x, df / 2. - 1.) * exp(-x / 2.) / G(df / 2.);
+    return pow(x / 2., (df - 2) / 2.) * exp(-x / 2.) / (2 * G(df / 2.));
 }
 
 double chi2Cdf(const double x, const int df)
@@ -87,7 +87,7 @@ double chi2Cdf(const double x, const int df)
     switch (df)
     {
     case 1:
-        return erf(sqrt(x));
+        return erf(sqrt(x / 2.));
         break;
     case 2:
         return 1. - exp(-x / 2.);

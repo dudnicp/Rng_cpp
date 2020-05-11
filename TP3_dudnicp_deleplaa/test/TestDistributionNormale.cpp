@@ -57,12 +57,11 @@ int main(int argc, char const *argv[])
     std::cout << "--- PASSED ---" << std::endl;
 
     std::cout << "--- Test inv_cdf() ---" << std::endl;
-    std::cout << d1.inv_cdf(0.1) << std::endl;
-    TEST_PRECISION(d1.inv_cdf(0.1), -1.28155, 1E-3);
-    TEST_PRECISION(d1.inv_cdf(0.25), -0.67449, 1E-3);
-    TEST_PRECISION(d1.inv_cdf(0.5), 0., 1E-3);
-    TEST_PRECISION(d1.inv_cdf(0.75), 0.67449, 1E-3);
-    TEST_PRECISION(d1.inv_cdf(0.9), 1.28155, 1E-3);
+    TEST_PRECISION(d1.inv_cdf(0.1), -1.28155, 1E-5);
+    TEST_PRECISION(d1.inv_cdf(0.25), -0.67449, 1E-5);
+    TEST_PRECISION(d1.inv_cdf(0.5), 0., 1E-5);
+    TEST_PRECISION(d1.inv_cdf(0.75), 0.67449, 1E-5);
+    TEST_PRECISION(d1.inv_cdf(0.9), 1.28155, 1E-5);
     std::cout << "--- PASSED ---" << std::endl;
 
     return EXIT_SUCCESS;
