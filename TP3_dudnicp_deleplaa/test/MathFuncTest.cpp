@@ -2,6 +2,14 @@
 #include "MyTest.h"
 #include <cmath>
 
+/**
+ * \file MathFuncTest.cpp
+ * \brief Tests sur les fonctions mathématiques auxiliaires
+ * \author Paul Dudnic & Adrien Deleplace
+ * \version 1.0
+ * \date 19/05/2020
+ */
+
 int main(int argc, char const *argv[])
 {
     // Test mean
@@ -26,17 +34,18 @@ int main(int argc, char const *argv[])
     }
 
     // Test G
-    TEST_EQ(G(1), sqrt(M_PI));
-    TEST_EQ(G(5./2.), sqrt(M_PI)*(1./2.)*(3./2.));
+    TEST_EQ(G(1. / 2.), sqrt(M_PI));
+    TEST_EQ(G(1), 1);
+    TEST_EQ(G(5. / 2.), sqrt(M_PI) * (1. / 2.) * (3. / 2.));
     try
     {
         G(-1);
         return EXIT_FAILURE;
     }
-    catch(const std::domain_error& e)
+    catch (const std::domain_error &e)
     {
     }
-    
+
     // Test chi2Cdf
     TEST_PRECISION(chi2Cdf(0.02, 1), 0.10, 0.01);
     TEST_PRECISION(chi2Cdf(18.31, 10), 0.950, 0.001);
@@ -46,7 +55,7 @@ int main(int argc, char const *argv[])
         chi2Cdf(10, -1);
         return EXIT_FAILURE;
     }
-    catch(const std::domain_error& e)
+    catch (const std::domain_error &e)
     {
     }
 
