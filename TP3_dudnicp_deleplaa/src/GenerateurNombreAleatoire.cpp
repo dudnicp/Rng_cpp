@@ -40,10 +40,11 @@ int GenerateurNombreAleatoire::get_dim() const
 
 double* GenerateurNombreAleatoire::generate_uniform() {
     uint64_t *temp = generate();
-    double ret[m_dim];
+    double *ret = new double[m_dim];
     for (int i = 0; i < m_dim; i++)
     {
-        ret[i] = temp[i] * (1. / get_max());
+        ret[i] = (double) temp[i] / (double) get_max();
     }
+    delete[] temp;
     return ret;
 }

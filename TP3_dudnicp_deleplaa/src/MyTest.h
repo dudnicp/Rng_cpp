@@ -51,7 +51,7 @@ void TEST_NEQ(const T1 &arg0, const T2 &arg1)
 template <typename T>
 void TEST_PRECISION(const T &arg0, const T &arg1, const T &epsilon)
 {
-    if (arg0 - arg1 > epsilon && arg1 - arg0 > epsilon)
+    if (arg0 - arg1 > epsilon || arg1 - arg0 > epsilon)
     {
         exit(EXIT_FAILURE);
     }

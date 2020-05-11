@@ -52,10 +52,12 @@ void stdNormalTest(const double z, const double alpha)
 void uniformFrequencyKSTest(const double *data, const int n)
 {
     // copie des données
-    double cpy[n];
-    memcpy(cpy, data, n);
-
-    // tri des données
+    double *cpy = new double[n];
+    for (int i = 0; i < n; i++)
+    {
+        cpy[i] = data[i];
+    }
+    
     std::sort(cpy, cpy + n);
 
     // calcul de D+
@@ -80,6 +82,8 @@ void uniformFrequencyKSTest(const double *data, const int n)
             Dminus = current;
         }
     }
+
+    delete[] cpy;
 
     // D = max(D+, D-)
     double D = (Dplus > Dminus) ? Dplus : Dminus;
