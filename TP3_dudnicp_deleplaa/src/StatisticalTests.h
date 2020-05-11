@@ -2,8 +2,8 @@
 #define STATISTICALTESTS_H
 
 /**
- * \file MathFunc.h
- * \brief Fonctions mathématiques
+ * \file StatisticalTests.h
+ * \brief Fonctions pour tests statistiques
  * \author Paul Dudnic & Adrien Deleplace
  * \version 1.0
  * \date 19/05/2020

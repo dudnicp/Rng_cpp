@@ -7,6 +7,14 @@
 #include <cmath>
 #include <vector>
 
+/**
+ * \file StatisticalTests.cpp
+ * \brief Fonctions pour tests statistiques
+ * \author Paul Dudnic & Adrien Deleplace
+ * \version 1.0
+ * \date 19/05/2020
+ */
+
 void chiSquaredTest(const double *obtained, const double *expected, const int n, const double alpha)
 {
     // Calcul de la p-value obtenue

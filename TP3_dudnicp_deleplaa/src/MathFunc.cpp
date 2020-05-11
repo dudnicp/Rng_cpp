@@ -3,13 +3,22 @@
 #include <cmath>
 #include <sstream>
 
-double mean(const double* data, const int n) {
+/**
+ * \file MathFunc.cpp
+ * \brief Fonctions mathématiques
+ * \author Paul Dudnic & Adrien Deleplace
+ * \version 1.0
+ * \date 19/05/2020
+ */
+
+double mean(const double *data, const int n)
+{
     double ret = 0;
     for (int i = 0; i < n; i++)
     {
         ret += data[i];
     }
-    
+
     return ret / n;
 }
 
@@ -17,6 +26,7 @@ int factorial(const int n)
 {
     if (n < 0)
     {
+        std::cout << "here" << std::endl;
         throw std::domain_error("Impossible d'appeller la fonction factorial sur des entiers négatifs");
     }
     if (n == 0 || n == 1)
@@ -25,16 +35,14 @@ int factorial(const int n)
     }
     else
     {
-        return factorial(n-1);
+        return factorial(n - 1)*n;
     }
-    
-    
 }
 
 double G(const double x)
 {
     int temp = 2 * x;
-    if (temp != 2 * x || temp == 0) // Verification 2*x est entier
+    if (temp != 2 * x || temp <= 0) // Verification 2*x est strictement positif
     {
         std::stringstream str;
         str << "Impossible d'appeler G pour x = " << x;
@@ -57,11 +65,21 @@ double G(const double x)
 
 double chi2Pdf(const double x, const int df)
 {
+    if (x < 0 || df < 1)
+    {
+        std::stringstream str;
+        str << "Impossible de calculer chi2Pdf pour x = " << x << " et df = " << df;
+        throw std::domain_error(str.str());
+    }
+    
     return pow(1. / .2, df / 2.) * pow(x, df / 2. - 1.) * exp(-x / 2.) / G(df / 2.);
 }
 
 double chi2Cdf(const double x, const int df)
 {
+    std::stringstream str;
+        str << "Impossible de calculer chi2Cdf pour x = " << x << " et df = " << df;
+        throw std::domain_error(str.str());
     switch (df)
     {
     case 1:

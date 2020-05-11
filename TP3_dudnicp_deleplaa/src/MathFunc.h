@@ -39,7 +39,7 @@ double G(const double x);
  * \param[in] x Un réel positif
  * \param[in] df Le nombre de degrés de liberté de la loi
  * \return La densité de probabilité de la loi du chi2 à df degrés de liberté au point x
- * \throw domain_error si x < 0;
+ * \throw domain_error si x < 0 ou df <= 0;
  */
  double chi2Pdf(const double x, const int df);
 
@@ -48,7 +48,7 @@ double G(const double x);
  * \param[in] x Un réel positif
  * \param[in] df Le nombre de degrés de liberté de la loi
  * \return La valeur de la fonction de répartition de la loi du chi2 à df degrés de liberté au point x
- * \throw domain_error si x < 0;
+ * \throw domain_error si x < 0 ou df <= 0;
  */
 double chi2Cdf(const double x, const int df);
 
