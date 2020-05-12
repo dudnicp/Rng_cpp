@@ -1,6 +1,3 @@
-#include "GenerateurParkMiller.h"
-#include "MyTest.h"
-
 /**
  * \file TestGenerateurParkMiller.cpp
  * \brief Tests sur le générateur aléatoire de Park-Miller
@@ -9,62 +6,78 @@
  * \date 19/05/2020
  */
 
-int main(int argc, char const *argv[])
+#define BOOST_TEST_MODULE TestsGenerateurParkMiller
+
+#include <boost/test/unit_test.hpp>
+#include "GenerateurParkMiller.h"
+
+BOOST_AUTO_TEST_CASE(TestDimConstructor)
 {
-    std::cout << "--- Test constructeur dim ---" << std::endl;
-    GenerateurParkMiller g1(3);
-    TEST_EQ(g1.get_dim(), 3);
-    TEST_EQ(g1.get_seed(), (uint64_t) 1);
-    std::cout << "--- PASSED ---" << std::endl;
+    GenerateurParkMiller g(3);
+    BOOST_CHECK_EQUAL(g.get_dim(), 3);
+    BOOST_CHECK_EQUAL(g.get_seed(), 1);
+}
 
-    std::cout << "--- Test constructeur par copie ---" << std::endl;
-    GenerateurParkMiller g2(g1);
-    TEST_EQ(g2.get_dim(), 3);
-    TEST_EQ(g2.get_seed(), (uint64_t) 1);
-    std::cout << "--- PASSED ---" << std::endl;
-    
-    std::cout << "--- Test operator= ---" << std::endl;
-    GenerateurParkMiller g3(1);
-    g3 = g1;
-    TEST_EQ(g3.get_dim(), 3);
-    TEST_EQ(g3.get_seed(), (uint64_t) 1);
-    std::cout << "--- PASSED ---" << std::endl;
+BOOST_AUTO_TEST_CASE(TestCopyConstructor)
+{
+    GenerateurParkMiller g0(3);
+    GenerateurParkMiller g(g0);
+    BOOST_CHECK_EQUAL(g.get_dim(), 3);
+    BOOST_CHECK_EQUAL(g.get_seed(), 1);
+}
 
-    
-    std::cout << "--- Test set_dim ---" << std::endl;
-    g2.set_dim(4);
-    TEST_EQ(g2.get_dim(), 4);
-    std::cout << "--- PASSED ---" << std::endl;
+BOOST_AUTO_TEST_CASE(TestSetDim)
+{
+    GenerateurParkMiller g(3);
+    g.set_dim(1);
+    BOOST_CHECK_EQUAL(g.get_dim(), 1);
+}
 
-    std::cout << "--- Test set_seed ---" << std::endl;
-    g2.set_seed(2);
-    TEST_EQ(g2.get_seed(), (uint64_t) 2);
-    std::cout << "--- PASSED ---" << std::endl;
+BOOST_AUTO_TEST_CASE(TestSetSeed)
+{
+    GenerateurParkMiller g(1);
+    g.set_seed(10);
+    BOOST_CHECK_EQUAL(g.get_seed(), 10);
+}
 
-    std::cout << "--- Test clone ---" << std::endl;
-    g1.clone(g2);
-    TEST_EQ(g1.get_dim(), 4);
-    TEST_EQ(g1.get_seed(), (uint64_t) 2);
-    std::cout << "--- PASSED ---" << std::endl;
+BOOST_AUTO_TEST_CASE(TestAssignmentOperator)
+{
+    GenerateurParkMiller g0(3);
+    g0.set_seed(3);
+    GenerateurParkMiller g(1);
+    g = g0;
+    BOOST_CHECK_EQUAL(g.get_dim(), 3);
+    BOOST_CHECK_EQUAL(g.get_seed(), 3);
+}
 
-    std::cout << "--- Test reset_seed ---" << std::endl;
-    g1.reset_seed();
-    TEST_EQ(g1.get_seed(), (uint64_t) 1);
-    std::cout << "--- PASSED ---" << std::endl;
+BOOST_AUTO_TEST_CASE(TestClone) {
+    GenerateurParkMiller g0(3);
+    g0.set_seed(3);
+    GenerateurParkMiller g(1);
+    g.clone(g0);
+    BOOST_CHECK_EQUAL(g.get_dim(), 3);
+    BOOST_CHECK_EQUAL(g.get_seed(), 3);
+}
 
-    std::cout << "--- Test get_max ---" << std::endl;
-    TEST_EQ(g1.get_max(), (uint64_t) INT32_MAX);
-    std::cout << "--- PASSED ---" << std::endl;
+BOOST_AUTO_TEST_CASE(TestResetSeed) {
+    GenerateurParkMiller g(3);
+    g.set_seed(3);
+    g.reset_seed();
+    BOOST_CHECK_EQUAL(g.get_seed(), 1);
+}
 
-    std::cout << "--- Test generate ---" << std::endl;
-    uint64_t *data = g1.generate();
-    TEST_EQ(data[0], (uint64_t) 16807);
-    TEST_EQ(data[1], (uint64_t) 282475249);
-    TEST_EQ(data[2], (uint64_t) 1622650073);
-    TEST_EQ(data[3], (uint64_t) 984943658);
-    std::cout << "--- PASSED ---" << std::endl;
+BOOST_AUTO_TEST_CASE(TestGetMax) {
+    GenerateurParkMiller g(3);
+    BOOST_CHECK_EQUAL(g.get_max(), INT32_MAX);
+}
+
+BOOST_AUTO_TEST_CASE(TestGenerate) {
+    GenerateurParkMiller g(4);
+    uint64_t* data = g.generate();
+    BOOST_CHECK_EQUAL(data[0], 16807);
+    BOOST_CHECK_EQUAL(data[1], 282475249);
+    BOOST_CHECK_EQUAL(data[2], 1622650073);
+    BOOST_CHECK_EQUAL(data[3], 984943658);
 
     delete[] data;
-
-    return EXIT_SUCCESS;
 }

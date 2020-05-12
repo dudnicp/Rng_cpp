@@ -1,11 +1,11 @@
 #include "StatisticalTests.h"
 #include "DistributionNormale.h"
-#include "MathFunc.h"
 #include <iostream>
 #include <algorithm>
 #include <cstring>
 #include <cmath>
 #include <vector>
+#include <boost/math/special_functions/factorials.hpp>
 
 /**
  * \file StatisticalTests.cpp
@@ -274,7 +274,7 @@ void runsUDLengthTest(const double *data, const int n)
     for (int i = 0; i < n - 2; i++)
     {
         int j = i + 1;
-        expected[i] = (2. / factorial(j + 3)) * (n * (pow(j, 2) + 3 * j + 1.) - (pow(j, 3) + 3 * pow(j, 2) - j - 4));
+        expected[i] = (2. / boost::math::factorial<double>(j + 3)) * (n * (pow(j, 2) + 3 * j + 1.) - (pow(j, 3) + 3 * pow(j, 2) - j - 4));
     }
     expected[n - 2] = 2. / factorial(n);
 
