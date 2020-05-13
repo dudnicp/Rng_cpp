@@ -12,21 +12,21 @@
 #include "DistributionNormale.h"
 
 
-BOOST_AUTO_TEST_CASE(TestDefaulConstructor)
+BOOST_AUTO_TEST_CASE(default_constructor)
 {
     DistributionNormale d;
     BOOST_CHECK_EQUAL(d.mean(), 0.);
     BOOST_CHECK_EQUAL(d.stdev(), 1.);
 }
 
-BOOST_AUTO_TEST_CASE(TestMeanStdevConstructor)
+BOOST_AUTO_TEST_CASE(mean_stdev_constructor)
 {
     DistributionNormale d(3., 2.);
     BOOST_CHECK_EQUAL(d.mean(), 3.);
     BOOST_CHECK_EQUAL(d.stdev(), 2.);
 }
 
-BOOST_AUTO_TEST_CASE(TestCopyConstructor)
+BOOST_AUTO_TEST_CASE(copy_constructor)
 {
     DistributionNormale d0(3., 2.);
     DistributionNormale d(d0);
@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE(TestCopyConstructor)
     BOOST_CHECK_EQUAL(d.stdev(), 2.);
 }
 
-BOOST_AUTO_TEST_CASE(TestAssignmentOperator)
+BOOST_AUTO_TEST_CASE(assigment_operator)
 {
     DistributionNormale d0(3., 2.);
     DistributionNormale d;
@@ -43,13 +43,13 @@ BOOST_AUTO_TEST_CASE(TestAssignmentOperator)
     BOOST_CHECK_EQUAL(d.stdev(), 2.);
 }
 
-BOOST_AUTO_TEST_CASE(TestVar)
+BOOST_AUTO_TEST_CASE(var)
 {
     DistributionNormale d(3., 2.);
     BOOST_CHECK_EQUAL(d.var(), 4.);
 }
 
-BOOST_AUTO_TEST_CASE(TestPdf)
+BOOST_AUTO_TEST_CASE(pdf)
 {
     DistributionNormale d;
     BOOST_CHECK_CLOSE(d.pdf(-2.), 0.05399, 0.01);
@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_CASE(TestPdf)
     BOOST_CHECK_CLOSE(d.pdf(2.), 0.05399, 0.01);
 }
 
-BOOST_AUTO_TEST_CASE(TestCdf)
+BOOST_AUTO_TEST_CASE(cdf)
 {
     DistributionNormale d;
     BOOST_CHECK_CLOSE(d.cdf(-2.), 0.02275, 0.01);
@@ -69,7 +69,7 @@ BOOST_AUTO_TEST_CASE(TestCdf)
     BOOST_CHECK_CLOSE(d.cdf(2.), 0.97725, 0.01);
 }
 
-BOOST_AUTO_TEST_CASE(TestInvCdf)
+BOOST_AUTO_TEST_CASE(inv_cdf)
 {
     DistributionNormale d;
     BOOST_CHECK_CLOSE(d.inv_cdf(0.1), -1.28155, 0.01);

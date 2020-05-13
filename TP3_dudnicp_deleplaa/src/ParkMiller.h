@@ -1,15 +1,15 @@
-#ifndef PARKMILLER_H
-#define PARKMILLER_H
-
-#include <iostream>
-
 /**
  * \file ParkMiller.h
- * \brief Méthode de Park-Miller pour la génération de nombres aléatoires
+ * \brief Prototypes de la classe ParkMiller
  * \author Paul Dudnic & Adrien Deleplace
  * \version 1.0
  * \date 19/05/2020
  */
+
+#ifndef PARKMILLER_H
+#define PARKMILLER_H
+
+#include <iostream>
 
 /**
  * \class ParkMiller

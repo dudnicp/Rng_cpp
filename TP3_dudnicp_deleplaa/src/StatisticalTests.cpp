@@ -1,3 +1,11 @@
+/**
+ * \file StatisticalTests.cpp
+ * \brief Corps des fonctions relatives aux tests statistiques
+ * \author Paul Dudnic & Adrien Deleplace
+ * \version 1.0
+ * \date 19/05/2020
+ */
+
 #include "StatisticalTests.h"
 #include "DistributionNormale.h"
 #include <iostream>
@@ -6,14 +14,6 @@
 #include <cmath>
 #include <vector>
 #include <boost/math/special_functions/factorials.hpp>
-
-/**
- * \file StatisticalTests.cpp
- * \brief Fonctions pour tests statistiques
- * \author Paul Dudnic & Adrien Deleplace
- * \version 1.0
- * \date 19/05/2020
- */
 
 void chiSquaredTest(const double *obtained, const double *expected, const int n, const double alpha)
 {

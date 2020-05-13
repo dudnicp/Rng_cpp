@@ -1,13 +1,13 @@
-#ifndef STATISTICALTESTS_H
-#define STATISTICALTESTS_H
-
 /**
  * \file StatisticalTests.h
- * \brief Fonctions pour tests statistiques
+ * \brief Prototypes de fonctions relatives aux tests statistiques
  * \author Paul Dudnic & Adrien Deleplace
  * \version 1.0
  * \date 19/05/2020
  */
+
+#ifndef STATISTICALTESTS_H
+#define STATISTICALTESTS_H
 
 /**
  * \brief Effectue un test du Chi2 pour tester l'adéquation entre une série de valeurs obtenues et celles attendues

@@ -1,13 +1,13 @@
-#include "ParkMiller.h"
-#include <cmath>
-
 /**
  * \file ParkMiller.cpp
- * \brief Méthode de Park-Miller pour la génération de nombres aléatoires
+ * \brief Corps des méthodes de la classe ParkMiller
  * \author Paul Dudnic & Adrien Deleplace
  * \version 1.0
  * \date 19/05/2020
  */
+
+#include "ParkMiller.h"
+#include <cmath>
 
 ParkMiller::ParkMiller() : m_seed(1) {}
 

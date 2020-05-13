@@ -1,16 +1,16 @@
+/**
+ * \file GenerateurParkMiller.h
+ * \brief Prototypes de la classe GenerateurParkMiller
+ * \author Paul Dudnic & Adrien Deleplace
+ * \version 1.0
+ * \date 19/05/2020
+ */
+
 #ifndef GENERATEURPARKMILLER_H
 #define GENERATEURPARKMILLER_H
 
 #include "GenerateurNombreAleatoire.h"
 #include "ParkMiller.h"
-
-/**
- * \file GenerateurParkMiller.h
- * \brief Générateur de nombres entiers aléatoires utilisant la méthode de Park-Miller
- * \author Paul Dudnic & Adrien Deleplace
- * \version 1.0
- * \date 19/05/2020
- */
 
 /**
  * \class GenerateurParkMiller
