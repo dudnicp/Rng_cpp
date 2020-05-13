@@ -14,49 +14,46 @@
 #include <cmath>
 #include <vector>
 #include <boost/math/special_functions/factorials.hpp>
+#include <boost/math/distributions/chi_squared.hpp>
 
-void chiSquaredTest(const double *obtained, const double *expected, const int n, const double alpha)
+using boost::math::factorial;
+
+double mean(const double *data, const int n)
 {
-    // Calcul de la p-value obtenue
-    double x = 0;
+    double ret = 0;
     for (int i = 0; i < n; i++)
     {
-        x += pow(obtained[i] - expected[i], 2) / expected[i];
+        ret += data[i];
     }
-    double pValue = 1 - chi2Cdf(x, n - 1);
-
-    std::cout << "p-value obtenue : " << pValue << std::endl;
-    std::cout << "p-value tolérée : " << alpha << std::endl;
-
-    if (pValue < alpha)
-    {
-        exit(EXIT_FAILURE);
-    }
+    return ret /= n;
 }
 
-void stdNormalTest(const double z, const double alpha)
+double chi2(const double *obtained, const double *expected, const int n)
 {
-    DistributionNormale stdNormal;
-    double z_alpha_2 = stdNormal.inv_cdf(alpha / 2.);
-
-    std::cout << "z obtenu " << z << std::endl;
-    std::cout << "z_alpha/2 toleré (en valeur absolue) pour alpha = " << alpha << " : " << z_alpha_2 << std::endl;
-
-    // Hypothèse H_null (données indépendantes) rejetée si |maxZ| > Z_alpha/2
-    if (z > z_alpha_2 || z < -z_alpha_2)
+    if (n < 1)
     {
-        exit(EXIT_FAILURE);
+        throw std::invalid_argument("La taille des tableaux doit être un entier strictement positif");
     }
+
+    double ret = 0;
+    for (int i = 0; i < n; i++)
+    {
+        ret += pow(obtained[i] - expected[i], 2) / expected[i];
+    }
+
+    return ret;
 }
 
-void uniformFrequencyKSTest(const double *data, const int n)
+double KS(const double *data, const int n)
 {
+    if (n < 1000)
+    {
+        throw std::invalid_argument("Pas assez de données pour obtenir une valeur significative");
+    }
+
     // copie des données
-    double *cpy = new double[n];
-    for (int i = 0; i < n; i++)
-    {
-        cpy[i] = data[i];
-    }
+    double cpy[n];
+    std::copy(data, data + n, cpy);
 
     std::sort(cpy, cpy + n);
 
@@ -83,27 +80,20 @@ void uniformFrequencyKSTest(const double *data, const int n)
         }
     }
 
-    delete[] cpy;
-
     // D = max(D+, D-)
-    double D = (Dplus > Dminus) ? Dplus : Dminus;
-    double D_alpha = 1.36 / sqrt(n - 1);
-
-    std::cout << "D obtenu : " << D << std::endl;
-    std::cout << "D_alpha toléré pour alpha = 0.05 : " << D_alpha << std::endl;
-
-    // Hypothèse H_null (data ~ U[0,1]) rejetée si D > D_alpha
-    if (D > D_alpha)
-    {
-        exit(EXIT_FAILURE);
-    }
+    return (Dplus > Dminus) ? Dplus : Dminus;
 }
 
-void uniformFrequencyChiSquaredTest(const double *data, int n)
+double uniformDistributionChi2(const double *data, const int n)
 {
-    int nClasses = 100;
-    double *obtained = new double[nClasses];
-    double *expected = new double[nClasses];
+    if (n < 1000)
+    {
+        throw std::invalid_argument("Pas assez de données pour obtenir une valeur significative");
+    }
+
+    const int nClasses = 100;
+    double obtained[nClasses] = {0};
+    double expected[nClasses] = {0};
 
     for (int i = 0; i < nClasses; i++)
     {
@@ -124,12 +114,17 @@ void uniformFrequencyChiSquaredTest(const double *data, int n)
         }
     }
 
-    chiSquaredTest(obtained, expected, nClasses);
+    return chi2(obtained, expected, nClasses);
 }
 
-void normalFrequencyChiSquaredTest(const double *data, int n)
+double normalDistributionChi2(const double *data, const int n)
 {
-    int nClasses = 100;
+    if (n < 1000)
+    {
+        throw std::invalid_argument("Pas assez de données pour obtenir une valeur significative");
+    }
+
+    const int nClasses = 100;
     double obtained[nClasses] = {0};
     double expected[nClasses];
     double inv_cdf[nClasses];
@@ -155,17 +150,23 @@ void normalFrequencyChiSquaredTest(const double *data, int n)
         }
     }
 
-    chiSquaredTest(obtained, expected, nClasses);
+    return chi2(obtained, expected, nClasses);
 }
 
-void autocorrelationTest(const double *data, const int n)
+double autocorrelationNormalVar(const double *data, const int n)
 {
+
+    if (n < 1000)
+    {
+        throw std::invalid_argument("Pas assez de données pour obtenir une valeur significative");
+    }
+
     std::vector<double> obtainedZ;
 
-    // i et m < 10 car M doit etre >> 1 pour obtenir une distribution normale
+    // i < 10 et m < 20 car M doit etre >> 1 pour obtenir une distribution normale
     for (int i = 0; i < 10; i++)
     {
-        for (int m = i + 1; m < 10; m++)
+        for (int m = i + 1; m < 20; m++)
         {
             // calcul de M
             int M = 0;
@@ -191,13 +192,16 @@ void autocorrelationTest(const double *data, const int n)
         }
     }
 
-    double maxZ = *(std::max_element(obtainedZ.begin(), obtainedZ.end()));
-
-    stdNormalTest(maxZ);
+    return *(std::max_element(obtainedZ.begin(), obtainedZ.end()));
 }
 
-void runsUDNumberTest(const double *data, const int n)
+double runsUDNumberNormalVar(const double *data, const int n)
 {
+    if (n < 1000)
+    {
+        throw std::invalid_argument("Pas assez de données pour obtenir une valeur significative");
+    }
+
     // calcul du nombre de runs up and down
     int nRuns = 1;
     bool risingRun = (data[1] >= data[0]);
@@ -213,13 +217,16 @@ void runsUDNumberTest(const double *data, const int n)
     // pour nRuns > 20, nRuns devrait suivre une loi normale
     double mu_nRuns = (2 * n - 1.) / 3.;
     double sigma_nRuns = sqrt((16. * n - 29.) / 90.);
-    double Z_nRuns = (nRuns - mu_nRuns) / sigma_nRuns;
-
-    stdNormalTest(Z_nRuns);
+    return (nRuns - mu_nRuns) / sigma_nRuns;
 }
 
-void runsABMNumberTest(const double *data, const int n)
+double runsABMNumberNormalVar(const double *data, const int n)
 {
+    if (n < 1000)
+    {
+        throw std::invalid_argument("Pas assez de données pour obtenir une valeur significative");
+    }
+
     // Calcul de la moyenne
     double m = mean(data, n);
 
@@ -242,13 +249,21 @@ void runsABMNumberTest(const double *data, const int n)
 
     double mu_AB = (2. * nAbove * nBelow) / n + 0.5;
     double sigma_AB = sqrt((2. * nAbove * nBelow * (2. * nAbove * nBelow - n)) / (n * n * (n - 1.)));
-    double Z_AB = (nRuns - mu_AB) / sigma_AB;
-
-    stdNormalTest(Z_AB);
+    return (nRuns - mu_AB) / sigma_AB;
 }
 
-void runsUDLengthTest(const double *data, const int n)
+double runsUDLengthChi2(const double *data, const int n)
 {
+    if (n < 20)
+    {
+        throw std::invalid_argument("Pas assez de données pour obtenir une valeur significative");
+    }
+
+    if (n > 100)
+    {
+        throw std::invalid_argument("Trop de données, peut fausser la valeur obtenue");
+    }
+
     // calcul du nombre et de la taille des runs ups and down
     // de chaque taille entre 1 et n-1 (donc indice tableau entre 0 et n-2)
     double runs[n - 1] = {0};
@@ -274,15 +289,26 @@ void runsUDLengthTest(const double *data, const int n)
     for (int i = 0; i < n - 2; i++)
     {
         int j = i + 1;
-        expected[i] = (2. / boost::math::factorial<double>(j + 3)) * (n * (pow(j, 2) + 3 * j + 1.) - (pow(j, 3) + 3 * pow(j, 2) - j - 4));
+        expected[i] = (2. / factorial<double>(j + 3)) * (n * (pow(j, 2) + 3 * j + 1.) - (pow(j, 3) + 3 * pow(j, 2) - j - 4));
     }
-    expected[n - 2] = 2. / factorial(n);
+    expected[n - 2] = 2. / factorial<double>(n);
 
-    chiSquaredTest(runs, expected, n - 1);
+    return chi2(runs, expected, n - 1);
 }
 
-void runsABMLengthTest(const double *data, const int n)
+double runsABMLengthChi2(const double *data, const int n)
 {
+    if (n < 20)
+    {
+        throw std::invalid_argument("Pas assez de données pour obtenir une valeur significative");
+    }
+
+    if (n > 100)
+    {
+        throw std::invalid_argument("Trop de données, peut fausser la valeur obtenue");
+    }
+
+    // calcul de la moyenne
     double m = mean(data, n);
 
     // calcul du nombre et de la taille des runs above/below mean et du nombre de valeurs au dessus/en dessous de la moyenne en même temps
@@ -323,5 +349,5 @@ void runsABMLengthTest(const double *data, const int n)
         expected[i] = n * u / e;
     }
 
-    chiSquaredTest(runs, expected, n);
+    return chi2(runs, expected, n);
 }
