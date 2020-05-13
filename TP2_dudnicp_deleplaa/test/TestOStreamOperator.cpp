@@ -1,8 +1,3 @@
-#include "MyTest.h"
-#include "Dvector.h"
-
-#include <sstream>
-
 /**
  * \file TestOStreamOperator.cpp
  * \brief Test sur l'opérateur << de la classe Dvector
@@ -11,18 +6,23 @@
  * \date 19/05/2020
  */
 
-int main(int argc, char const *argv[])
+#define BOOST_TEST_MODULE TestOStreamOperator
+
+#include <boost/test/unit_test.hpp>
+#include "Dvector.h"
+
+#include <sstream>
+
+BOOST_AUTO_TEST_CASE(basic)
 {
-    std::stringstream str1;
-    std::stringstream str2;
+    std::stringstream str;
+    str << Dvector(3, 2.);
+    BOOST_CHECK_EQUAL(str.str(), "2\n2\n2\n");
+}
 
-    // Test stream << Dvector
-    str1 << Dvector(3, 2.);
-    TEST_EQ(str1.str(), std::string("2\n2\n2\n"));
-
-    // Test stream << Dvector << Dvector
-    str2 << Dvector(3, 2.) << Dvector(3, 2.);
-    TEST_EQ(str2.str(), std::string("2\n2\n2\n2\n2\n2\n"));
-    
-    return EXIT_SUCCESS;
+BOOST_AUTO_TEST_CASE(chained)
+{
+    std::stringstream str;
+    str << Dvector(3, 2.) << Dvector(3, 2.);
+    BOOST_CHECK_EQUAL(str.str(), "2\n2\n2\n2\n2\n2\n");
 }

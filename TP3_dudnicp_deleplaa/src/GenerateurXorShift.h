@@ -1,16 +1,16 @@
+/**
+ * \file GenerateurXorShift.h
+ * \brief Prototypes de la classe GenerateurXorShift
+ * \author Paul Dudnic & Adrien Deleplace
+ * \version 1.0
+ * \date 19/05/2020
+ */
+
 #ifndef GENERATEURXORSHIFT_H
 #define GENERATEURXORSHIFT_H
 
 #include "GenerateurNombreAleatoire.h"
 #include "XorShift.h"
-
-/**
- * \file GenerateurXorShift.h
- * \brief Générateur de nombres entiers aléatoires utilisant la méthode de XorShift
- * \author Paul Dudnic & Adrien Deleplace
- * \version 1.0
- * \date 19/05/2020
- */
 
 /**
  * \class GenerateurXorShift

@@ -1,15 +1,17 @@
+
+/**
+ * \file Dvector.cpp
+ * \brief Corps des méthodes de la classe DVector
+ * \author Paul Dudnic & Adrien Deleplace
+ * \version 1.0
+ * \date 19/05/2020
+ */
+
 #include "Dvector.h"
 #include <random>
 #include <fstream>
 #include <cstring>
 
-/**
- * \file Dvector.cpp
- * \brief Vecteur de doubles
- * \author Paul Dudnic & Adrien Deleplace
- * \version 1.0
- * \date 19/05/2020
- */
 
 Dvector::Dvector()
 {
@@ -334,11 +336,6 @@ bool Dvector::operator==(const Dvector &other) const
     }
 
     return true;
-}
-
-bool Dvector::operator!=(const Dvector &other) const
-{
-    return !(*this == other);
 }
 
 Dvector &Dvector::operator=(const Dvector &other)

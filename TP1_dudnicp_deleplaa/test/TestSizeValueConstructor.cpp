@@ -14,7 +14,7 @@
 BOOST_AUTO_TEST_CASE(size_default_value) {
     Dvector v(3);
     BOOST_CHECK_EQUAL(v.size(), 3);
-    BOOST_CHECK_NE(v.coords(), nullptr);
+    BOOST_CHECK(v.coords() != nullptr);
     for (int i = 0; i < 3; i++)
     {
         BOOST_CHECK_EQUAL(v.coords()[i], 0);
@@ -24,7 +24,7 @@ BOOST_AUTO_TEST_CASE(size_default_value) {
 BOOST_AUTO_TEST_CASE(size_value) {
     Dvector v(3, 2.);
     BOOST_CHECK_EQUAL(v.size(), 3);
-    BOOST_CHECK_NE(v.coords(), nullptr);
+    BOOST_CHECK(v.coords() != nullptr);
     for (int i = 0; i < 3; i++)
     {
         BOOST_CHECK_EQUAL(v.coords()[i], 2.);
@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE(size_value) {
 BOOST_AUTO_TEST_CASE(null_size) {
     Dvector v(0);
     BOOST_CHECK_EQUAL(v.size(), 0);
-    BOOST_CHECK_EQUAL(v.coords(), nullptr);
+    BOOST_CHECK(v.coords() == nullptr);
 }
 
 BOOST_AUTO_TEST_CASE(invalid_size) {

@@ -1,16 +1,15 @@
-#ifndef DVECTOR_H
-#define DVECTOR_H
-
-#include <iostream>
-
 /**
  * \file Dvector.h
- * \brief Vecteur de doubles
+ * \brief Prototypes de la classe Dvector
  * \author Paul Dudnic & Adrien Deleplace
  * \version 1.0
  * \date 19/05/2020
  */
 
+#ifndef DVECTOR_H
+#define DVECTOR_H
+
+#include <iostream>
 
 /**
  * \class Dvector
@@ -101,13 +100,6 @@ class Dvector {
          * \return true si le Dvector est égal au Dvector spécifié, false sinon
          */
         bool operator==(const Dvector &other) const;
-
-         /**
-         * \brief Teste l'inégalité entre le Dvector et un autre
-         * \param[in] other Un Dvector
-         * \return false si le Dvector est égal au Dvector spécifié, true sinon
-         */
-        bool operator!=(const Dvector &other) const;
 
         /**
          * \brief Accède à la coordonnée d'indice spécifié du Dvetor

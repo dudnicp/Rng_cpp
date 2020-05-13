@@ -1,92 +1,106 @@
-#ifndef STATISTICALTESTS_H
-#define STATISTICALTESTS_H
-
 /**
  * \file StatisticalTests.h
- * \brief Fonctions pour tests statistiques
+ * \brief Prototypes de fonctions relatives aux tests statistiques
  * \author Paul Dudnic & Adrien Deleplace
  * \version 1.0
  * \date 19/05/2020
  */
 
+#ifndef STATISTICALTESTS_H
+#define STATISTICALTESTS_H
+
 /**
- * \brief Effectue un test du Chi2 pour tester l'adéquation entre une série de valeurs obtenues et celles attendues
+ * \brief Calcule la valeur moyenne d'un tableau
+ * \param[in] data Un tableau de valeurs
+ * \param[in] n La taille du tableau
+ * \return La valeur moyenne d'un tableau
+ * \throw invalid_argument Si n < 1
+ */
+double mean(const double* data, const int n);
+
+/**
+ * \brief Calcule la valeur d'une variable de loi Chi2
  * \param[in] obtained Le tableau des valeurs obtenues
  * \param[in] expected Le tableau des valeurs attendues
- * \param[in] n La taille des tableaux de valeurs
- * \param[in] alpha La p-value necessaire pour passer le test (par défaut 0.05)
+ * \param[in] n La taille des tableaux
+ * \return La valeur du chi2 obtenues en comparant les valeurs obtenues avec les valeurs attendues
+ * \throw invalid_argument Si n < 1
  */
-void chiSquaredTest(const double* obtained, const double *expected, const int n, const double alpha = 0.05);
+double chi2(const double* obtained, const double *expected, const int n);
 
 /**
- * \brief Vérifie qu'une valeur suit bien une loi normale centrée
- * \param[in] z La valeur z à tester
- * \param[in] alpha La p-value nécessaire pour passer le test (par défaut 0.05)
+ * \brief Calcule la valeur d'une variable de Kolmogorov-Smirnov à partir des données fournies
+ * \param[in] data Le tableau des données obtenues
+ * \param[in] n La taille du tableau
+ * \return La valeur de la variable de Kolmogorov-Smirnov obtenue à partir des données fournies
+ * \throw invalid_argument Si n < 1000 (il faut beaucoup de valeurs pour une valeur significative)
  */
-void stdNormalTest(const double z, const double alpha = 0.05);
+double KS(const double* data, const int n);
 
 /**
- * \brief Vérifie que les valeurs d'un tableau suivent une loi uniforme sur [0,1] via la méthode de Kolmogorov-Smirnov
+ * \brief Calcule la valeur du Chi2 pour un tableau de valeurs supposées uniformes
+ * \param[in] data Le tableau de valeurs
+ * \param[in] n La taille du tableau
+ * \param[in] nClasses Le nombre de classes pour calculer le Chi2
+ * \return La valeur du chi2 obtenue en comparant les données obtenues aux données uniformes attendues
+ * \throw invalid_argument Si n < 1000 (il faut beaucoup de valeurs pour une valeur significative)
+ */
+double uniformDistributionChi2(const double* data, const int n, const int nClasses);
+
+/**
+ * \brief Calcule la valeur du Chi2 pour un tableau de valeurs supposées de loi normale
+ * \param[in] data Le tableau de valeurs
+ * \param[in] n La taille du tableau
+ * \param[in] nClasses Le nombre de classes pour calculer le Chi2
+ * \return La valeur du chi2 obtenue en comparant les données obtenues aux données normales attendues
+ * \throw invalid_argument Si n < 1000 (il faut beaucoup de valeurs pour une valeur significative)
+ */
+double normalDistributionChi2(const double* data, const int n, const int nClasses);
+
+/**
+ * \brief Calcule l'autocorrélation entre les données d'un tableau
  * \param[in] data Le tableau à tester
  * \param[in] n La taille du tableau
- * \throw runtime_error Si n < 1000 (il faut beaucoup de valeurs pour un test significatif)
+ * \return Une valeur suivant une loi normale centrée réduite
+ * \throw invalid_argument Si n < 1000 (il faut beaucoup de valeurs pour une valeur significative)
  */
-void uniformFrequencyKSTest(const double* data, const int n);
+double autocorrelationNormalVar(const double* data, const int n);
 
 /**
- * \brief Vérifie que les valeurs d'un tableau suivent une loi uniforme sur [0,1] via la méthode du Chi2
+ * \brief Calcule la valeur d'une variable aléatoire obtenue à partir du nombre de runs up and down d'un tableau de valeurs supposées uniformes
  * \param[in] data Le tableau à tester
  * \param[in] n La taille du tableau
- * \throw runtime_error Si n < 1000 (il faut beaucoup de valeurs pour un test significatif)
+ * \return Une valeur suivant une loi normale centrée réduite
+ * \throw invalid_argument Si n < 1000 (il faut beaucoup de valeurs pour une valeur significative)
  */
-void uniformFrequencyChiSquaredTest(const double* data, const int n);
+double runsUDNumberNormalVar(const double* data, const int n);
 
 /**
- * \brief Vérifie que les valeurs d'un tableau suivent une loi normale centré réduite via la méthode du Chi2
+ * \brief Calcule la valeur d'une variable aléatoire obtenue à partir du nombre de runs au dessus et en dessous de la moyenne d'un tableau de valeurs 
+ * \brief supposées uniformes
  * \param[in] data Le tableau à tester
  * \param[in] n La taille du tableau
- * \throw runtime_error Si n < 1000 (il faut beaucoup de valeurs pour un test significatif)
+ * \return Une valeur suivant une loi normale centrée réduite
+ * \throw invalid_argument Si n < 1000 (il faut beaucoup de valeurs pour une valeur significative)
  */
-void normalFrequencyChiSquaredTest(const double* data, const int n);
+double runsABMNumberNormalVar(const double* data, const int n);
 
 /**
- * \brief Vérifie qu'il n'y a pas d'auto-corrélation entre les valeurs d'un tableau
+ * \brief Calcule la valeur du Chi2 obtenue à partir de la taille des runs up and down d'un tableau de valeurs supposées uniformes
  * \param[in] data Le tableau à tester
  * \param[in] n La taille du tableau
- * \throw runtime_error Si n < 1000 (il faut beaucoup de valeurs pour un test significatif)
+ * \return La valeur du Chi2 obtenue en comparant les tailles des runs up and down aus tailles attendues
+ * \throw invalid_argument Si n < 20 ou n > 100 (l'utilisation de factorielles et de puissances impose de limiter n)
  */
-void autocorrelationTest(const double* data, const int n);
+double runsUDLengthChi2(const double* data, const int n);
 
 /**
- * \brief Vérifie si les valeurs d'un tableau sont vraiment aléatoires en testant le de runs up and down
+ * \brief Calcule la valeur du Chi2 obtenue à partir de la taille des runs au dessus et en dessous de la moyenne d'un tableau de valeurs supposées uniformes
  * \param[in] data Le tableau à tester
  * \param[in] n La taille du tableau
- * \throw runtime_error Si n < 1000 (il faut beaucoup de valeurs pour un test significatif)
+ * \return La valeur du Chi2 obtenue en comparant les tailles des runs au dessus et en dessous aus tailles attendues
+ * \throw invalid_argument Si n < 20 ou n > 100 (l'utilisation de factorielles et de puissances impose de limiter n)
  */
-void runsUDNumberTest(const double* data, const int n);
-
-/**
- * \brief Vérifie si les valeurs d'un tableau sont vraiment aléatoires en testant le nombre de runs au dessus et en dessous de la moyenne
- * \param[in] data Le tableau à tester
- * \param[in] n La taille du tableau
- * \throw runtime_error Si n < 1000 (il faut beaucoup de valeurs pour un test significatif)
- */
-void runsABMNumberTest(const double* data, const int n);
-
-/**
- * \brief Vérifie si les valeurs d'un tableau sont vraiment aléatoires en testant la taille des runs up and down
- * \param[in] data Le tableau à tester
- * \param[in] n La taille du tableau
- * \throw runtime_error Si n < 1000 (il faut beaucoup de valeurs pour un test significatif)
- */
-void runsUDLengthTest(const double* data, const int n);
-
-/**
- * \brief Vérifie si les valeurs d'un tableau sont vraiment aléatoires via en testant la taille des runs au dessus et en dessous de la moyenne
- * \param[in] data Le tableau à tester
- * \param[in] n La taille du tableau
- * \throw runtime_error Si n < 1000 (il faut beaucoup de valeurs pour un test significatif)
- */
-void runsABMLengthTest(const double* data, const int n);
+double runsABMLengthChi2(const double* data, const int n);
 
 #endif
