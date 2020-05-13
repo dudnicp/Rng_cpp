@@ -1,6 +1,3 @@
-#include "Dvector.h"
-#include "MyTest.h"
-
 /**
  * \file TestDefaultConstructor.cpp
  * \brief Tests du constructeur par défaut de la classe Dvector
@@ -9,11 +6,14 @@
  * \date 19/05/2020
  */
 
-int main(int argc, char const *argv[])
+#define BOOST_TEST_MODULE TestDefaultConstructor
+
+#include <boost/test/unit_test.hpp>
+#include "Dvector.h"
+
+BOOST_AUTO_TEST_CASE(default_constructor)
 {
     Dvector v;
-    TEST_EQ(v.size(), 0);
-    TEST_EQ(v.coords(), nullptr);
-
-    return EXIT_SUCCESS;
+    BOOST_CHECK_EQUAL(v.size(), 0);
+    BOOST_CHECK_EQUAL(v.coords(), nullptr);
 }

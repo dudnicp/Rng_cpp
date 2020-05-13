@@ -1,6 +1,3 @@
-#include "Dvector.h"
-#include "MyTest.h"
-
 /**
  * \file TestFileConstructor.cpp
  * \brief Tests du constructeur par fichier de la classe Dvector
@@ -9,28 +6,39 @@
  * \date 19/05/2020
  */
 
-int main(int argc, char const *argv[])
-{
-    // Test initialisation fichier vide
-    Dvector v("EmptyInit.txt");
-    TEST_EQ(v.size(), 0);
-    TEST_EQ(v.coords(), nullptr);
+#define BOOST_TEST_MODULE TestFileConstructor
 
-    // Tests avec fichiers non vide
-    Dvector* tab = new Dvector[3];
-    tab[0] = Dvector("LineBreakInit.txt"); // Coordonnées séparées par des sauts de ligne
-    tab[1] = Dvector("SpaceInit.txt"); // Coordonnées séparées par des sauts esapces
-    tab[2] = Dvector("ComplexInit.txt"); // Coordonnées séparées par sauts de lignes et espace avec des lignes vides et des tabulations
+#include <boost/test/unit_test.hpp>
+#include "Dvector.h"
+
+BOOST_AUTO_TEST_CASE(empty_init)
+{
+    Dvector v("EmptyInit.txt");
+    BOOST_CHECK_EQUAL(v.size(), 0);
+    BOOST_CHECK_EQUAL(v.coords(), nullptr);
+}
+
+BOOST_AUTO_TEST_CASE(file_init)
+{
+    std::string files[3];;
+    files[0] = "LineBreakInit.txt";
+    files[1] = "SpaceInit.txt";
+    files[2] = "ComplexInit.txt";
 
     for (int i = 0; i < 3; i++)
     {
-        TEST_EQ(tab[i].size(), 6);
-        TEST_NEQ(tab[i].coords(), nullptr);
-        for (int j = 0; j < tab[i].size(); j++)
+        Dvector v(files[i]);
+        BOOST_CHECK_EQUAL(v.size(), 6);
+        BOOST_CHECK_NE(v.coords(), nullptr);
+
+        for (int j = 0; j < 6; j++)
         {
-            TEST_EQ(tab[i].coords()[j], j/10.);
+            BOOST_CHECK_EQUAL(v.coords()[j], j / 10.);
         }
     }
+}
 
-    return EXIT_SUCCESS;
+BOOST_AUTO_TEST_CASE(invalid_init)
+{
+    BOOST_CHECK_THROW(Dvector(""), std::invalid_argument);
 }

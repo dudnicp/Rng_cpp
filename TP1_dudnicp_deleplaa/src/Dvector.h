@@ -1,15 +1,15 @@
-#ifndef DVECTOR_H
-#define DVECTOR_H
-
-#include <iostream>
-
 /**
  * \file Dvector.h
- * \brief Vecteur de doubles
+ * \brief Prototypes de la classe Dvector
  * \author Paul Dudnic & Adrien Deleplace
  * \version 1.0
  * \date 19/05/2020
  */
+
+#ifndef DVECTOR_H
+#define DVECTOR_H
+
+#include <iostream>
 
 
 /**
