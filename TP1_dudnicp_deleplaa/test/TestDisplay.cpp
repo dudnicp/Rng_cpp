@@ -1,8 +1,3 @@
-#include "Dvector.h"
-#include "MyTest.h"
-
-#include <sstream>
-
 /**
  * \file TestDisplay.cpp
  * \brief Tests de la fonction display() de la classe Dvector
@@ -11,12 +6,16 @@
  * \date 19/05/2020
  */
 
-int main(int argc, char const *argv[])
+#define BOOST_TEST_MODULE TestDispay
+
+#include <boost/test/unit_test.hpp>
+#include <sstream>
+#include "Dvector.h"
+
+BOOST_AUTO_TEST_CASE(display)
 {
     std::stringstream str;
     Dvector v(3, 2.);
     v.display(str);
-    TEST_EQ(str.str(), std::string("2\n2\n2\n"));
-
-    return EXIT_SUCCESS;
+    BOOST_CHECK_EQUAL(str.str(), std::string("2\n2\n2\n"));
 }

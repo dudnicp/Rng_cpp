@@ -110,7 +110,7 @@ questions_par_tp = { \
         QuestionKey(3) :
             QuestionATester([ClassInfo('Dvector',False)],
                             [],
-                            QuestionATester.getSingleTest(['Dvector v1, v2',TP2
+                            QuestionATester.getSingleTest(['Dvector v1, v2',
                                                            'v1+2.0',
                                                            'v1-2.0',
                                                            'v1*2.0',

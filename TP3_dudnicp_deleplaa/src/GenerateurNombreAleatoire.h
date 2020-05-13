@@ -91,9 +91,18 @@ public:
     virtual void reset_seed() = 0;
 
     /**
-     * \brief Renvoie un tableau de nombre aléatoires de la taille du générateur
+     * \brief Génère un tableau de valeurs aléatoires
+     * \return Un tableau de valeurs aléatoires de la taille du générateur
+     * \see m_dim 
      */
     virtual uint64_t* generate() = 0;
+
+    /**
+     * \brief Génère un tableau de valeurs aléatoires uniformes dans [0,1]
+     * \return Un tableau de valeurs aléatoires uniformes dans [0,1] de la taille du générateur
+     * \see m_dim 
+     */
+    double* generate_uniform();
 };
 
 #endif

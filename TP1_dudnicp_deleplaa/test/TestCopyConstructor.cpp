@@ -1,5 +1,3 @@
-#include "Dvector.h"
-#include "MyTest.h"
 /**
  * \file TestCopyConstructor.cpp
  * \brief Tests du constructeur par copie de la classe Dvector
@@ -8,24 +6,27 @@
  * \date 19/05/2020
  */
 
-int main(int argc, char const *argv[])
+#define BOOST_TEST_MODULE TestCopyConstructor
+
+#include <boost/test/unit_test.hpp>
+#include "Dvector.h"
+
+BOOST_AUTO_TEST_CASE(empty_vect_copy)
 {
-    Dvector test(3, 2.);
-    Dvector nullVect;
+    Dvector v0;
+    Dvector v(v0);
+    BOOST_CHECK_EQUAL(v.size(), 0);
+    BOOST_CHECK_EQUAL(v.coords(), nullptr);
+}
 
-    // Test Constructeur copie Dvector
-    Dvector v(test);
-    TEST_EQ(v.size(), 3);
-    TEST_NEQ(v.coords(), nullptr);
-    for (int i = 0; i < v.size(); i++)
+BOOST_AUTO_TEST_CASE(vect_copy)
+{
+    Dvector v0(3, 2.);
+    Dvector v(v0);
+    BOOST_CHECK_EQUAL(v.size(), 3);
+    BOOST_CHECK_NE(v.coords(), nullptr);
+    for (int i = 0; i < 3; i++)
     {
-        TEST_EQ(v.coords()[i], 2.);
+        BOOST_CHECK_EQUAL(v.coords()[i], 2.);
     }
-
-    // Test Constructeur copie Dvector nul
-    Dvector w(nullVect);
-    TEST_EQ(w.size(), 0);
-    TEST_EQ(w.coords(), nullptr);    
-
-    return EXIT_SUCCESS;
 }

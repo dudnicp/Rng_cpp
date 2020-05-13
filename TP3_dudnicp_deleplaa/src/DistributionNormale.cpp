@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <iostream>
 #include <sstream>
+#include <vector>
 
 /**
  * \file DistributionNormale.cpp
@@ -86,14 +87,26 @@ double DistributionNormale::inv_cdf(const double x) const
         error << "inv_cdf définie sur [0, 1], argument recu : " << x;
         throw std::domain_error(error.str());
     }
+
+    double z = 2. * x - 1.;
+
+    // calcul des 10 premiers termes de la suite
+    int n = 20;
+    double inv_erf = 0;
+    double c[n] = {0};
+    c[0] = 1;
+    for (int i = 1; i < n; i++)
+    {
+        for (int j = 0; j < i; j++)
+        {
+            c[i] += c[j] * c[i - 1 - j] / ((j + 1) * (2 * j + 1));
+        }
+    }
     
-    double z = 2.*x + 1.;
-    double inv_erf = sqrt(M_PI) * (z +
-                                M_PI/12. * pow(z, 3) + 
-                                7. * pow(M_PI, 2)/480. * pow(z, 5) +
-                                127. * pow(M_PI, 3)/40320. * pow(z, 7) +
-                                4369. * pow(M_PI, 4)/5806080. * pow(z, 9) +
-                                34807. * pow(M_PI, 5)/182476800. * pow(z, 11));
+    for (int i = 0; i < n; i++)
+    {
+        inv_erf += c[i] / (2. * i + 1) * pow(sqrt(M_PI) / 2. * z, 2 * i + 1);
+    }
 
     return m_stdev * M_SQRT2 * inv_erf + m_mean;
 }

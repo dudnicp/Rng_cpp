@@ -1,3 +1,11 @@
+/**
+ * \file Dvector.cpp
+ * \brief Corps des méthodes propres aux Dvectors
+ * \author Paul Dudnic & Adrien Deleplace
+ * \version 1.0
+ * \date 19/05/2020
+ */
+
 #include "Dvector.h"
 #include <random>
 #include <fstream>
@@ -57,35 +65,33 @@ Dvector::Dvector(const std::string fileName)
     std::cout << "Constructeur par fichier" << std::endl;
     std::ifstream initFile(fileName);
 
-    if (initFile)
+    if (!initFile)
     {
-        std::string currentWord;
-        m_size = 0;
-        while (initFile >> currentWord)
-        {
-            m_size++;
-        }
+        throw std::invalid_argument("Impossible d'ouvrir le fichier " + fileName);
+    }
 
-        initFile.clear();
-        initFile.seekg(0, std::ios::beg);
+    // calcul de la taille du Dvector
+    double currentVal;
+    m_size = 0;
+    while (initFile >> currentVal)
+    {
+        m_size++;
+    }
 
-        if (m_size != 0)
+    // Rebobinage du fichier pour stocker les coordonnées
+    initFile.clear();
+    initFile.seekg(0, std::ios::beg);
+    if (m_size != 0)
+    {
+        m_coords = new double[m_size];
+        for (int i = 0; i < m_size; i++)
         {
-            m_coords = new double[m_size];
-            for (int i = 0; i < m_size; i++)
-            {
-                initFile >> currentWord;
-                m_coords[i] = std::stod(currentWord);
-            }
-        }
-        else
-        {
-            m_coords = NULL;
+            initFile >> m_coords[i];
         }
     }
     else
     {
-        throw std::invalid_argument("Impossible d'ouvrir le fichier " + fileName);
+        m_coords = nullptr;
     }
 }
 
