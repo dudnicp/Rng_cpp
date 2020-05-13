@@ -15,7 +15,7 @@ BOOST_AUTO_TEST_CASE(dim_constructor)
 {
     GenerateurXorShift g(3);
     BOOST_CHECK_EQUAL(g.get_dim(), 3);
-    BOOST_CHECK_EQUAL(g.get_seed(), 1);
+    BOOST_CHECK_EQUAL(g.get_seed(), 1llu);
 }
 
 BOOST_AUTO_TEST_CASE(copy_constructor)
@@ -23,7 +23,7 @@ BOOST_AUTO_TEST_CASE(copy_constructor)
     GenerateurXorShift g0(3);
     GenerateurXorShift g(g0);
     BOOST_CHECK_EQUAL(g.get_dim(), 3);
-    BOOST_CHECK_EQUAL(g.get_seed(), 1);
+    BOOST_CHECK_EQUAL(g.get_seed(), 1llu);
 }
 
 BOOST_AUTO_TEST_CASE(set_dim)
@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE(set_seed)
 {
     GenerateurXorShift g(1);
     g.set_seed(10);
-    BOOST_CHECK_EQUAL(g.get_seed(), 10);
+    BOOST_CHECK_EQUAL(g.get_seed(), 10llu);
 }
 
 BOOST_AUTO_TEST_CASE(assignment_operator)
@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(assignment_operator)
     GenerateurXorShift g(1);
     g = g0;
     BOOST_CHECK_EQUAL(g.get_dim(), 3);
-    BOOST_CHECK_EQUAL(g.get_seed(), 3);
+    BOOST_CHECK_EQUAL(g.get_seed(), 3llu);
 }
 
 BOOST_AUTO_TEST_CASE(clone_)
@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_CASE(clone_)
     GenerateurXorShift g(1);
     g.clone(g0);
     BOOST_CHECK_EQUAL(g.get_dim(), 3);
-    BOOST_CHECK_EQUAL(g.get_seed(), 3);
+    BOOST_CHECK_EQUAL(g.get_seed(), 3llu);
 }
 
 BOOST_AUTO_TEST_CASE(reset_seed)
@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE(reset_seed)
     GenerateurXorShift g(3);
     g.set_seed(3);
     g.reset_seed();
-    BOOST_CHECK_EQUAL(g.get_seed(), 1);
+    BOOST_CHECK_EQUAL(g.get_seed(), 1llu);
 }
 
 BOOST_AUTO_TEST_CASE(get_max)
@@ -78,10 +78,10 @@ BOOST_AUTO_TEST_CASE(generate)
 {
     GenerateurXorShift g(4);
     uint64_t *data = g.generate();
-    BOOST_CHECK_EQUAL(data[0], 33685761);
-    BOOST_CHECK_EQUAL(data[1], 1125917087301641);
-    BOOST_CHECK_EQUAL(data[2], 868093111971292453);
-    BOOST_CHECK_EQUAL(data[3], 13510906257080325);
+    BOOST_CHECK_EQUAL(data[0], 33685761llu);
+    BOOST_CHECK_EQUAL(data[1], 1125917087301641llu);
+    BOOST_CHECK_EQUAL(data[2], 868093111971292453llu);
+    BOOST_CHECK_EQUAL(data[3], 13510906257080325llu);
 
     delete[] data;
 }

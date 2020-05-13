@@ -14,9 +14,6 @@
 #include <cmath>
 #include <vector>
 #include <boost/math/special_functions/factorials.hpp>
-#include <boost/math/distributions/chi_squared.hpp>
-
-using boost::math::factorial;
 
 double mean(const double *data, const int n)
 {
@@ -84,21 +81,19 @@ double KS(const double *data, const int n)
     return (Dplus > Dminus) ? Dplus : Dminus;
 }
 
-double uniformDistributionChi2(const double *data, const int n)
+double uniformDistributionChi2(const double *data, const int n, const int nClasses)
 {
     if (n < 1000)
     {
         throw std::invalid_argument("Pas assez de données pour obtenir une valeur significative");
     }
 
-    const int nClasses = 100;
     double obtained[nClasses] = {0};
-    double expected[nClasses] = {0};
+    double expected[nClasses];
 
     for (int i = 0; i < nClasses; i++)
     {
         expected[i] = ((double)n) / nClasses;
-        obtained[i] = 0;
     }
 
     // calculs des fréquences obtenues
@@ -117,25 +112,26 @@ double uniformDistributionChi2(const double *data, const int n)
     return chi2(obtained, expected, nClasses);
 }
 
-double normalDistributionChi2(const double *data, const int n)
+double normalDistributionChi2(const double *data, const int n, const int nClasses)
 {
     if (n < 1000)
     {
         throw std::invalid_argument("Pas assez de données pour obtenir une valeur significative");
     }
 
-    const int nClasses = 100;
     double obtained[nClasses] = {0};
     double expected[nClasses];
     double inv_cdf[nClasses];
 
     DistributionNormale stdNormal;
 
-    for (int i = 0; i < nClasses; i++)
+    for (int i = 0; i < nClasses - 1; i++)
     {
         expected[i] = ((double)n) / nClasses;
-        inv_cdf[i] = stdNormal.inv_cdf(expected[i]);
+        inv_cdf[i] = stdNormal.inv_cdf((double) (i + 1.) / (double) nClasses);
     }
+    expected[nClasses - 1] = ((double)n) / nClasses;
+    inv_cdf[nClasses - 1] = 100; // La distribution normale ne peut générer des nombres qu'entre -6 et 6
 
     // calculs des fréquences obtenues
     for (int i = 0; i < n; i++)
@@ -150,6 +146,12 @@ double normalDistributionChi2(const double *data, const int n)
         }
     }
 
+    for (int i = 0; i < nClasses; i++)
+    {
+        std::cout << "obtained[" << i << "] = " << obtained[i] << std::endl;
+        std::cout << "expected[" << i << "] = " << expected[i] << std::endl;
+    }
+    
     return chi2(obtained, expected, nClasses);
 }
 
@@ -233,8 +235,8 @@ double runsABMNumberNormalVar(const double *data, const int n)
     // calcul du nombre de valeurs au dessus et en dessous de la moyenne
     int nRuns = 1;
     bool runAboveMean = (data[0] > m);
-    int nAbove = runAboveMean;
-    int nBelow = !runAboveMean;
+    int nAbove = (int) runAboveMean;
+    int nBelow = (int) !runAboveMean;
 
     for (int i = 1; i < n; i++)
     {
@@ -243,12 +245,14 @@ double runsABMNumberNormalVar(const double *data, const int n)
         {
             nRuns++;
         }
-        nAbove += currentAbove;
-        nBelow += !currentAbove;
+        nAbove += (int) currentAbove;
+        nBelow += (int) !currentAbove;
     }
 
     double mu_AB = (2. * nAbove * nBelow) / n + 0.5;
-    double sigma_AB = sqrt((2. * nAbove * nBelow * (2. * nAbove * nBelow - n)) / (n * n * (n - 1.)));
+    double temp1 = 2. * nAbove * nBelow * (2. * nAbove * nBelow - n);
+    double temp2 = (double) n * (double) n * (double)(n - 1.);
+    double sigma_AB = sqrt(temp1 / temp2);
     return (nRuns - mu_AB) / sigma_AB;
 }
 
@@ -289,9 +293,9 @@ double runsUDLengthChi2(const double *data, const int n)
     for (int i = 0; i < n - 2; i++)
     {
         int j = i + 1;
-        expected[i] = (2. / factorial<double>(j + 3)) * (n * (pow(j, 2) + 3 * j + 1.) - (pow(j, 3) + 3 * pow(j, 2) - j - 4));
+        expected[i] = (2. / boost::math::factorial<double>(j + 3)) * (n * (pow(j, 2) + 3 * j + 1.) - (pow(j, 3) + 3 * pow(j, 2) - j - 4));
     }
-    expected[n - 2] = 2. / factorial<double>(n);
+    expected[n - 2] = 2. / boost::math::factorial<double>(n);
 
     return chi2(runs, expected, n - 1);
 }

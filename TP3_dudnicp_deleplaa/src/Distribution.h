@@ -59,7 +59,7 @@ public:
      * \brief Inverse de la fonction de répartition de la distribution
      * \param[in] x Un réel
      * \return La valeur de l'inverse de la fonction de répartition de la distribution au point x
-     * \throw domain_error Si x < 0 ou x > 1
+     * \throw domain_error Si x <= 0 ou x => 1
      */
     virtual double inv_cdf(const double x) const = 0;
 

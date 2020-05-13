@@ -15,6 +15,7 @@
  * \param[in] n La taille du tableau
  * \return La valeur moyenne d'un tableau
  * \throw invalid_argument Si n < 1
+ */
 double mean(const double* data, const int n);
 
 /**
@@ -40,19 +41,21 @@ double KS(const double* data, const int n);
  * \brief Calcule la valeur du Chi2 pour un tableau de valeurs supposées uniformes
  * \param[in] data Le tableau de valeurs
  * \param[in] n La taille du tableau
+ * \param[in] nClasses Le nombre de classes pour calculer le Chi2
  * \return La valeur du chi2 obtenue en comparant les données obtenues aux données uniformes attendues
  * \throw invalid_argument Si n < 1000 (il faut beaucoup de valeurs pour une valeur significative)
  */
-double uniformDistributionChi2(const double* data, const int n);
+double uniformDistributionChi2(const double* data, const int n, const int nClasses);
 
 /**
  * \brief Calcule la valeur du Chi2 pour un tableau de valeurs supposées de loi normale
  * \param[in] data Le tableau de valeurs
  * \param[in] n La taille du tableau
+ * \param[in] nClasses Le nombre de classes pour calculer le Chi2
  * \return La valeur du chi2 obtenue en comparant les données obtenues aux données normales attendues
  * \throw invalid_argument Si n < 1000 (il faut beaucoup de valeurs pour une valeur significative)
  */
-double normalDistributionChi2(const double* data, const int n);
+double normalDistributionChi2(const double* data, const int n, const int nClasses);
 
 /**
  * \brief Calcule l'autocorrélation entre les données d'un tableau
