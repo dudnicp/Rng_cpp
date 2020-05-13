@@ -15,7 +15,7 @@ BOOST_AUTO_TEST_CASE(empty_init)
 {
     Dvector v("EmptyInit.txt");
     BOOST_CHECK_EQUAL(v.size(), 0);
-    BOOST_CHECK_EQUAL(v.coords(), nullptr);
+    BOOST_CHECK(v.coords() == nullptr);
 }
 
 BOOST_AUTO_TEST_CASE(file_init)
@@ -29,7 +29,7 @@ BOOST_AUTO_TEST_CASE(file_init)
     {
         Dvector v(files[i]);
         BOOST_CHECK_EQUAL(v.size(), 6);
-        BOOST_CHECK_NE(v.coords(), nullptr);
+        BOOST_CHECK(v.coords() != nullptr);
 
         for (int j = 0; j < 6; j++)
         {
