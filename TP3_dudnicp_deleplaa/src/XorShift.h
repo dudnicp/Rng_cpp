@@ -1,16 +1,15 @@
-#ifndef XORSHIFT_H
-#define XORSHIFT_H
-
-#include <iostream>
-
-
 /**
  * \file XorShift.h
- * \brief Méthode XorShift pour la génération de nombres aléatoires
+ * \brief Prototypes de la classe XorShift
  * \author Paul Dudnic & Adrien Deleplace
  * \version 1.0
  * \date 19/05/2020
  */
+
+#ifndef XORSHIFT_H
+#define XORSHIFT_H
+
+#include <iostream>
 
 /**
  * \class XorShift

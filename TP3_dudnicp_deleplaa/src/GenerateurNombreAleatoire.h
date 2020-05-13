@@ -1,15 +1,15 @@
-#ifndef GENERATEURNOMBREALEATOIRE_H
-#define GENERATEURNOMBREALEATOIRE_H
-
-#include <cstdint>
-
 /**
  * \file GenerateurNombreAleatoire.h
- * \brief Générateur de nombres entiers aléatoires
+ * \brief Prototypes de la classe GenerateurNombreAleatoire
  * \author Paul Dudnic & Adrien Deleplace
  * \version 1.0
  * \date 19/05/2020
  */
+
+#ifndef GENERATEURNOMBREALEATOIRE_H
+#define GENERATEURNOMBREALEATOIRE_H
+
+#include <cstdint>
 
 /**
  * \class GenerateurNombreAleatoire

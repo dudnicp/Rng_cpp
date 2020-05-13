@@ -1,13 +1,13 @@
-#include "GenerateurXorShift.h"
-#include <iostream>
-
 /**
  * \file GenerateurXorShift.cpp
- * \brief Générateur de nombres entiers aléatoires utilisant la méthode de XorShift
+ * \brief Corps des méthodes de la classe GenerateurXorShift
  * \author Paul Dudnic & Adrien Deleplace
  * \version 1.0
  * \date 19/05/2020
  */
+
+#include "GenerateurXorShift.h"
+#include <iostream>
 
 GenerateurXorShift::GenerateurXorShift(int dim) : GenerateurNombreAleatoire(dim)
 {

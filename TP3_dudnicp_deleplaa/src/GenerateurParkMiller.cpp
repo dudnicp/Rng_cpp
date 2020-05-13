@@ -1,14 +1,14 @@
-#include "GenerateurParkMiller.h"
-#include "GenerateurNombreAleatoire.h"
-#include <iostream>
-
 /**
  * \file GenerateurNombreAleatoire.cpp
- * \brief Générateur de nombres entiers aléatoires utilisant la méthode de Park-Miller
+ * \brief Corps des méthodes de la classe GenerateurParkMiller
  * \author Paul Dudnic & Adrien Deleplace
  * \version 1.0
  * \date 19/05/2020
  */
+
+#include "GenerateurParkMiller.h"
+#include "GenerateurNombreAleatoire.h"
+#include <iostream>
 
 GenerateurParkMiller::GenerateurParkMiller(int dim) : GenerateurNombreAleatoire(dim)
 {

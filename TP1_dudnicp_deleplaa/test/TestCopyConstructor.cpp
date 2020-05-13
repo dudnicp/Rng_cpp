@@ -16,7 +16,7 @@ BOOST_AUTO_TEST_CASE(empty_vect_copy)
     Dvector v0;
     Dvector v(v0);
     BOOST_CHECK_EQUAL(v.size(), 0);
-    BOOST_CHECK_EQUAL(v.coords(), nullptr);
+    BOOST_CHECK(v.coords() == nullptr);
 }
 
 BOOST_AUTO_TEST_CASE(vect_copy)
@@ -24,7 +24,7 @@ BOOST_AUTO_TEST_CASE(vect_copy)
     Dvector v0(3, 2.);
     Dvector v(v0);
     BOOST_CHECK_EQUAL(v.size(), 3);
-    BOOST_CHECK_NE(v.coords(), nullptr);
+    BOOST_CHECK(v.coords() != nullptr);
     for (int i = 0; i < 3; i++)
     {
         BOOST_CHECK_EQUAL(v.coords()[i], 2.);

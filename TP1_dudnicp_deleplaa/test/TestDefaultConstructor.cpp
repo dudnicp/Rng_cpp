@@ -15,5 +15,5 @@ BOOST_AUTO_TEST_CASE(default_constructor)
 {
     Dvector v;
     BOOST_CHECK_EQUAL(v.size(), 0);
-    BOOST_CHECK_EQUAL(v.coords(), nullptr);
+    BOOST_CHECK(v.coords() == nullptr);
 }

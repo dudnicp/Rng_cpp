@@ -1,6 +1,3 @@
-#include "MyTest.h"
-#include "Dvector.h"
-
 /**
  * \file TestAccessOperator.cpp
  * \brief Tests sur l'opérateur () de la classe Dvector
@@ -9,33 +6,30 @@
  * \date 19/05/2020
  */
 
-int main(int argc, char const *argv[])
+#define BOOST_TEST_MODULE TestAccessOperator
+
+#include <boost/test/unit_test.hpp>
+#include "Dvector.h"
+
+BOOST_AUTO_TEST_CASE(read_access)
+{
+    Dvector v(3, 2);
+    for (int i = 0; i < 3; i++)
+    {
+        BOOST_CHECK_EQUAL(v(i), 2.);
+    }
+}
+
+BOOST_AUTO_TEST_CASE(write_access)
+{
+    Dvector v(3, 2);
+    v(1) = 3.;
+    BOOST_CHECK_EQUAL(v(1), 3);
+}
+
+BOOST_AUTO_TEST_CASE(invalid_access)
 {
     Dvector v(3, 2.);
-
-    // Test accès lecture
-    TEST_EQ(v(1), 2.);
-
-    // Test accès ecriture
-    v(1) = 3.;
-    TEST_EQ(v(1), 3.);
-
-    // Test accès interdit (indice < 0)
-    try
-    {
-        v(-1);
-        return EXIT_FAILURE;
-    }
-    catch(const std::out_of_range& e) {}
-
-    // Test accès interdit (indice > 0)
-    try
-    {
-        v(3);
-        return EXIT_FAILURE;
-    }
-    catch(const std::out_of_range& e) {}
-    
-
-    return EXIT_SUCCESS;
+    BOOST_CHECK_THROW(v(-1), std::out_of_range);
+    BOOST_CHECK_THROW(v(3), std::out_of_range);
 }

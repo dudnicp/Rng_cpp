@@ -1,15 +1,15 @@
-#ifndef DISTRIBUTION_H
-#define DISTRIBUTION_H
-
-#include "GenerateurNombreAleatoire.h"
-
 /**
  * \file Distribution.h
- * \brief Variable aléatoire suivant une distribution particulière
+ * \brief Prototypes de la classe Disitribution
  * \author Paul Dudnic & Adrien Deleplace
  * \version 1.0
  * \date 19/05/2020
  */
+
+#ifndef DISTRIBUTION_H
+#define DISTRIBUTION_H
+
+#include "GenerateurNombreAleatoire.h"
 
 /**
  * \class Distribution
@@ -59,7 +59,7 @@ public:
      * \brief Inverse de la fonction de répartition de la distribution
      * \param[in] x Un réel
      * \return La valeur de l'inverse de la fonction de répartition de la distribution au point x
-     * \throw domain_error Si x < 0 ou x > 1
+     * \throw domain_error Si x <= 0 ou x => 1
      */
     virtual double inv_cdf(const double x) const = 0;
 

@@ -1,17 +1,17 @@
+/**
+ * \file DistributionNormale.cpp
+ * \brief Corps des fonctions de la classe DistributionNormale
+ * \author Paul Dudnic & Adrien Deleplace
+ * \version 1.0
+ * \date 19/05/2020
+ */
+
 #include "DistributionNormale.h"
 #include <cmath>
 #include <cstdint>
 #include <iostream>
 #include <sstream>
 #include <vector>
-
-/**
- * \file DistributionNormale.cpp
- * \brief Variable aléatoire suivant une distribution normale
- * \author Paul Dudnic & Adrien Deleplace
- * \version 1.0
- * \date 19/05/2020
- */
 
 DistributionNormale::DistributionNormale() : m_mean(0.), m_stdev(1.) {}
 
@@ -81,17 +81,17 @@ double DistributionNormale::pdf(const double x) const
 
 double DistributionNormale::inv_cdf(const double x) const
 {
-    if (x < 0 || x > 1)
+    if (x <= 0 || x >= 1)
     {
         std::stringstream error;
-        error << "inv_cdf définie sur [0, 1], argument recu : " << x;
+        error << "inv_cdf définie sur ]0, 1[, argument recu : " << x;
         throw std::domain_error(error.str());
     }
 
     double z = 2. * x - 1.;
 
-    // calcul des 10 premiers termes de la suite
-    int n = 20;
+    // calcul des 1000 premiers termes de la suite
+    int n = 1000;
     double inv_erf = 0;
     double c[n] = {0};
     c[0] = 1;
