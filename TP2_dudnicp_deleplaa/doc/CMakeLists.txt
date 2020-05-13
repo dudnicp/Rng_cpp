@@ -5,7 +5,7 @@ else()
    configure_file(doxyfilerc Doxyfile)
 
    set(DOXYGEN_INPUT ${CMAKE_BINARY_DIR}/doc/Doxyfile)
-   set(DOXYGEN_OUTPUT ${APIDOC_DIR}/html/index.html)
+   set(DOXYGEN_OUTPUT ${APIDOC_DIR}/doc/index.html)
 
    add_custom_target(doc ALL
      COMMAND ${CMAKE_COMMAND} -E echo_append "Generation de la documentation..."

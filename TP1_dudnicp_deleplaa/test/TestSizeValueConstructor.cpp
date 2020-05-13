@@ -1,6 +1,3 @@
-#include "Dvector.h"
-#include "MyTest.h"
-
 /**
  * \file TestSizeValueConstructor.cpp
  * \brief Tests du constructeur taille + valeur de la classe Dvector
@@ -9,34 +6,37 @@
  * \date 19/05/2020
  */
 
-int main(int argc, char const *argv[])
-{
-    // Test Constructeur taille + valeur par défaut
-    Dvector v0(3);
-    TEST_EQ(v0.size(), 3);
-    TEST_NEQ(v0.coords(), nullptr);
-    for (int i = 0; i < v0.size(); i++)
-    {
-        TEST_EQ(v0.coords()[i], 0.);
-    }
+#define BOOST_TEST_MODULE TestSizeValueConstructor
 
-    // Test Constructeur taille + valeur
-    Dvector v1(3, 2.);
-    TEST_EQ(v1.size(), 3);
-    TEST_NEQ(v1.coords(), nullptr);
-    for (int i = 0; i < v1.size(); i++)
-    {
-        TEST_EQ(v1.coords()[i], 2.);
-    }
+#include <boost/test/unit_test.hpp>
+#include "Dvector.h"
 
-    // Test Constructeur taille invalide
-    try
+BOOST_AUTO_TEST_CASE(size_default_value) {
+    Dvector v(3);
+    BOOST_CHECK_EQUAL(v.size(), 3);
+    BOOST_CHECK_NE(v.coords(), nullptr);
+    for (int i = 0; i < 3; i++)
     {
-        Dvector v2(-1);
-        return EXIT_FAILURE;
+        BOOST_CHECK_EQUAL(v.coords()[i], 0);
     }
-    catch(const std::invalid_argument& e) {}
-    
+}
 
-    return EXIT_SUCCESS;
+BOOST_AUTO_TEST_CASE(size_value) {
+    Dvector v(3, 2.);
+    BOOST_CHECK_EQUAL(v.size(), 3);
+    BOOST_CHECK_NE(v.coords(), nullptr);
+    for (int i = 0; i < 3; i++)
+    {
+        BOOST_CHECK_EQUAL(v.coords()[i], 2.);
+    }
+}
+
+BOOST_AUTO_TEST_CASE(null_size) {
+    Dvector v(0);
+    BOOST_CHECK_EQUAL(v.size(), 0);
+    BOOST_CHECK_EQUAL(v.coords(), nullptr);
+}
+
+BOOST_AUTO_TEST_CASE(invalid_size) {
+    BOOST_CHECK_THROW(Dvector(-1), std::invalid_argument);
 }
