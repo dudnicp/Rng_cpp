@@ -1,6 +1,3 @@
-#include "MyTest.h"
-#include "Dvector.h"
-
 /**
  * \file TestSelfMultOperator.cpp
  * \brief Test sur l'opérateur *= de la classe Dvector
@@ -9,11 +6,12 @@
  * \date 19/05/2020
  */
 
-int main(int argc, char const *argv[])
-{
-    // Test Dvector *= double
-    TEST_EQ(Dvector(3, 2.) *= 3, Dvector(3, 6.));
+#define BOOST_TEST_MODULE TestSelfMultOperator
 
-    
-    return EXIT_SUCCESS;
+#include <boost/test/unit_test.hpp>
+#include "Dvector.h"
+
+BOOST_AUTO_TEST_CASE(real_multiplication)
+{
+    BOOST_CHECK_EQUAL(Dvector(3, 2.) *= 3, Dvector(3, 6.));
 }

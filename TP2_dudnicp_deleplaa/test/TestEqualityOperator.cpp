@@ -1,6 +1,3 @@
-#include "MyTest.h"
-#include "Dvector.h"
-
 /**
  * \file TestEqualityOperator.cpp
  * \brief Tests sur l'opérateur == de la classe Dvector
@@ -9,22 +6,16 @@
  * \date 19/05/2020
  */
 
-int main(int argc, char const *argv[])
+#define BOOST_TEST_MODULE TestEqualityOperator
+
+#include <boost/test/unit_test.hpp>
+#include "Dvector.h"
+
+BOOST_AUTO_TEST_CASE(equal)
 {
-    // Test Dvector == Dvector true
-    TEST_EQ(Dvector(3, 2.) == Dvector(3, 2.), true);
-
-    // Test Dvector == Dvector false (taille)
-    TEST_EQ(Dvector(3, 2.) == Dvector(4, 2.), false);
-
-    // Test Dvector == Dvector false (coordonnées)
-    TEST_EQ(Dvector(3, 2.) == Dvector(3, 3.), false);
-
-    // Test Dvector == Dvector true (Dvectors nulls)
-    TEST_EQ(Dvector() == Dvector(), true);
-
-    // Test Dvector == Dvector false (Dvector null)
-    TEST_EQ(Dvector() == Dvector(3, 2.), false);
-    
-    return EXIT_SUCCESS;
+    BOOST_CHECK(Dvector(3, 2.) == Dvector(3, 2.));    // Test Dvector == Dvector true
+    BOOST_CHECK(!(Dvector(3, 2.) == Dvector(4, 2.))); // Test Dvector == Dvector false (taille)
+    BOOST_CHECK(!(Dvector(3, 2.) == Dvector(3, 3.))); // Test Dvector == Dvector false (coordonnées)
+    BOOST_CHECK(Dvector() == Dvector());              // Test Dvector == Dvector true (Dvectors nulls)
+    BOOST_CHECK(!(Dvector() == Dvector(3, 2.)));      // Test Dvector == Dvector false (Dvector null)
 }
