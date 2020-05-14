@@ -15,6 +15,8 @@
 
 BOOST_AUTO_TEST_CASE(Kolmogorov_Smirnov_test)
 {
+    std::cout << "--- Test de Kolmogorov-Smirnov ---" << std::endl;
+
     const int N = 1000000;
     GenerateurXorShift g(N);
     double *data = g.generate_uniform();
@@ -24,13 +26,15 @@ BOOST_AUTO_TEST_CASE(Kolmogorov_Smirnov_test)
     delete[] data;
 
     std::cout << "D obtenu : " << D << std::endl;
-    std::cout << "D attendu : " << expectedD << std::endl;
+    std::cout << "D toléré : " << expectedD << std::endl;
 
     BOOST_CHECK_LT(D, expectedD);
 }
 
 BOOST_AUTO_TEST_CASE(chi2_test)
 {
+    std::cout << "--- Test du X2 ---" << std::endl;
+
     const int N = 1000000;
     GenerateurXorShift g(N);
     const int nClasses = 100;
@@ -41,7 +45,7 @@ BOOST_AUTO_TEST_CASE(chi2_test)
     delete[] data;
 
     std::cout << "X2 obtenu : " << X2 << std::endl;
-    std::cout << "X2 attendu : " << expectedX2 << std::endl;
+    std::cout << "X2 toléré : " << expectedX2 << std::endl;
 
     BOOST_CHECK_LT(X2, expectedX2);
 }

@@ -29,7 +29,7 @@ BOOST_AUTO_TEST_CASE(runs_up_down_number)
     double Z_alpha = d.inv_cdf(0.975); // Test pour alpha = 0.05
 
     std::cout << "Z obtenu : " << Z << std::endl;
-    std::cout << "Z attendu : " << Z_alpha << std::endl;
+    std::cout << "Z toléré : " << Z_alpha << std::endl;
 
     BOOST_CHECK_LT(Z, Z_alpha);
 }
@@ -49,7 +49,7 @@ BOOST_AUTO_TEST_CASE(runs_above_below_number)
     double Z_alpha = d.inv_cdf(0.975); // Test pour alpha = 0.05
 
     std::cout << "Z obtenu : " << Z << std::endl;
-    std::cout << "Z attendu : " << Z_alpha << std::endl;
+    std::cout << "Z toléré : " << Z_alpha << std::endl;
 
     BOOST_CHECK_LT(Z, Z_alpha);
 }
@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_CASE(runs_up_down_length)
     delete[] data;
 
     std::cout << "X2 obtenu : " << X2 << std::endl;
-    std::cout << "X2 attendu : " << expectedX2 << std::endl;
+    std::cout << "X2 toléré : " << expectedX2 << std::endl;
 
     BOOST_CHECK_LT(X2, expectedX2);
 }
@@ -85,7 +85,7 @@ BOOST_AUTO_TEST_CASE(runs_above_below_length)
     delete[] data;
 
     std::cout << "X2 obtenu : " << X2 << std::endl;
-    std::cout << "X2 attendu : " << expectedX2 << std::endl;
+    std::cout << "X2 toléré : " << expectedX2 << std::endl;
 
     BOOST_CHECK_LT(X2, expectedX2);
 }
