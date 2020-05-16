@@ -16,6 +16,7 @@ BOOST_AUTO_TEST_CASE(dim_constructor)
     GenerateurParkMiller g(3);
     BOOST_CHECK_EQUAL(g.get_dim(), 3);
     BOOST_CHECK_EQUAL(g.get_seed(), 1llu);
+    BOOST_CHECK_THROW(GenerateurParkMiller(-1), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(copy_constructor)
@@ -31,6 +32,7 @@ BOOST_AUTO_TEST_CASE(set_dim)
     GenerateurParkMiller g(3);
     g.set_dim(1);
     BOOST_CHECK_EQUAL(g.get_dim(), 1);
+    BOOST_CHECK_THROW(g.set_dim(-1), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(set_seed)
@@ -38,6 +40,7 @@ BOOST_AUTO_TEST_CASE(set_seed)
     GenerateurParkMiller g(1);
     g.set_seed(10);
     BOOST_CHECK_EQUAL(g.get_seed(), 10llu);
+    BOOST_CHECK_THROW(g.set_seed(0xffffffff), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(assigment_operator)

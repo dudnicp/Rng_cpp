@@ -1,6 +1,6 @@
-# TP1 Modélisation et Programation
+# TP3 Modélisation et Programation
 
-Classe Dvector : Constructeurs et premières fonctions.
+Génération de nombres aléatoires
 
 ## Logiciels nécessaires
 
@@ -62,7 +62,7 @@ Commandes à lancer depuis le répertoire **build** du projet
 
 - Executer des examples
 
-  Plusieurs exemples sont à disposition (principalement pour répondre aux questions du TP) : DemoQ1 et DemoComplete.
+  Plusieurs exemples sont à disposition (principalement pour répondre aux questions du TP) : BigGenParkMiller et BigGenXorShift
 
   ```bash
   examples/<nom_exemple>

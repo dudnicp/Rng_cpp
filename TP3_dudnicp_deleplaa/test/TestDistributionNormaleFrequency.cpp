@@ -30,7 +30,7 @@ BOOST_AUTO_TEST_CASE(chi2_test)
     delete[] data;
 
     std::cout << "X2 obtenu : " << X2 << std::endl;
-    std::cout << "X2 attendu : " << expectedX2 << std::endl;
+    std::cout << "X2 toléré : " << expectedX2 << std::endl;
 
     BOOST_CHECK_LT(X2, expectedX2);
 }

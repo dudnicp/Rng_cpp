@@ -63,7 +63,7 @@ public:
     /**
      * \brief Modifie la graine de la méthode
      * \param[in] seed La nouvelle graine de la méthode
-     * \throw invalid_argument Si la graine spécifiée est < 1 ou >= m 
+     * \throw invalid_argument Si la graine spécifiée est >= m 
      * \see m
      */
     void set_seed(const uint64_t seed);

@@ -16,6 +16,7 @@ BOOST_AUTO_TEST_CASE(dim_constructor)
     GenerateurXorShift g(3);
     BOOST_CHECK_EQUAL(g.get_dim(), 3);
     BOOST_CHECK_EQUAL(g.get_seed(), 1llu);
+    BOOST_CHECK_THROW(GenerateurXorShift(-1), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(copy_constructor)
@@ -31,6 +32,7 @@ BOOST_AUTO_TEST_CASE(set_dim)
     GenerateurXorShift g(3);
     g.set_dim(1);
     BOOST_CHECK_EQUAL(g.get_dim(), 1);
+    BOOST_CHECK_THROW(g.set_dim(-1), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(set_seed)

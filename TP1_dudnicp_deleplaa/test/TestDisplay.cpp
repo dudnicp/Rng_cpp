@@ -17,5 +17,5 @@ BOOST_AUTO_TEST_CASE(display)
     std::stringstream str;
     Dvector v(3, 2.);
     v.display(str);
-    BOOST_CHECK_EQUAL(str.str(), std::string("2\n2\n2\n"));
+    BOOST_CHECK_EQUAL(str.str(), "2\n2\n2\n");
 }
