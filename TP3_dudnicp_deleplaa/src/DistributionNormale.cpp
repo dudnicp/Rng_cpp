@@ -33,6 +33,8 @@ DistributionNormale &DistributionNormale::operator=(const DistributionNormale &o
 
 double *DistributionNormale::random_draws(GenerateurNombreAleatoire &generator) const
 {
+    // Transformation de Box-Muller
+
     uint64_t *X = generator.generate();
     uint64_t *Y = generator.generate();
 

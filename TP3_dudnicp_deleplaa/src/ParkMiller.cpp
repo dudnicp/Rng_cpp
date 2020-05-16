@@ -30,7 +30,7 @@ uint64_t ParkMiller::get_max() const {
 void ParkMiller::set_seed(uint64_t seed) {
     // m est premier donc pas besoin de vérifier si seed et m sont copremiers
     // On vérifie seulement le respect des boornes
-    if (seed < 1 || seed >= m)
+    if (seed >= m)
     {
         throw std::invalid_argument("Graine invalide");
     }

@@ -91,6 +91,7 @@ double uniformDistributionChi2(const double *data, const int n, const int nClass
     double obtained[nClasses] = {0};
     double expected[nClasses];
 
+    // Calcul des fréquences attendues
     for (int i = 0; i < nClasses; i++)
     {
         expected[i] = ((double)n) / nClasses;
@@ -125,6 +126,7 @@ double normalDistributionChi2(const double *data, const int n, const int nClasse
 
     DistributionNormale stdNormal;
 
+    // Calcul des fréquences attendues
     for (int i = 0; i < nClasses - 1; i++)
     {
         expected[i] = ((double)n) / nClasses;
@@ -144,12 +146,6 @@ double normalDistributionChi2(const double *data, const int n, const int nClasse
                 break;
             }
         }
-    }
-
-    for (int i = 0; i < nClasses; i++)
-    {
-        std::cout << "obtained[" << i << "] = " << obtained[i] << std::endl;
-        std::cout << "expected[" << i << "] = " << expected[i] << std::endl;
     }
     
     return chi2(obtained, expected, nClasses);
