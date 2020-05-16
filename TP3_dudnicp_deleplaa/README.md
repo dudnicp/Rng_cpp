@@ -1,4 +1,4 @@
-# TP3 Modélisation et Programation
+# TP3 Modélisation et Programmation
 
 Générateurs de nombres aléatoires Park-Miller et XorShift, Distribution Normale
 
