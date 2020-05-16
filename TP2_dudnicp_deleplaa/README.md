@@ -53,7 +53,7 @@ Commandes à lancer depuis le répertoire **build** du projet
   make check
   ```
 
-  Ceci lancera l'execution de tous les tests et produira un apercu succint du status de chaque test : PASSED ou FAILED.
+  Ceci lancera l'execution de tous les tests et produira un apercu succinct du status de chaque test : PASSED ou FAILED.
   Pour plus d'informations sur un test, executer la commande
 
   ```bash
@@ -76,4 +76,4 @@ Commandes à lancer depuis le répertoire **build** du projet
 
 ## Auteurs
 
-Paul Dudnic & Adrien Deleplace
+Adrien Deleplace & Paul Dudnic
