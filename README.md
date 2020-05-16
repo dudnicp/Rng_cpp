@@ -1,4 +1,4 @@
-# Projet Modélisation et Programation C++
+# Projet Modélisation et Programmation C++
 
 Génération de nombres aléatoires
 

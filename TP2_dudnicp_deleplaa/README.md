@@ -1,4 +1,4 @@
-# TP2 Modélisation et Programation
+# TP2 Modélisation et Programmation
 
 Classe Dvector : surcharge d'opérateurs
 

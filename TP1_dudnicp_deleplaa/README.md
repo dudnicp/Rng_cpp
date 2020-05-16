@@ -1,4 +1,4 @@
-# TP1 Modélisation et Programation
+# TP1 Modélisation et Programmation
 
 Classe Dvector : constructeurs et premières fonctions.
 
