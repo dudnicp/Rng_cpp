@@ -61,7 +61,6 @@ public:
     /**
      * \brief Modifie la graine de la méthode
      * \param[in] seed La nouvelle graine de la méthode
-     * \throw invalid_argument Si la graine spécifiée est < 1
      */
     void set_seed(const uint64_t seed);
 

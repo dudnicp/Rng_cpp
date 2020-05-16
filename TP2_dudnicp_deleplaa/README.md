@@ -1,6 +1,6 @@
-# TP1 Modélisation et Programation
+# TP2 Modélisation et Programation
 
-Classe Dvector : Constructeurs et premières fonctions.
+Classe Dvector : surcharge d'opérateurs
 
 ## Logiciels nécessaires
 
@@ -21,7 +21,7 @@ cmake ..
 
 Commandes à lancer depuis le répertoire **build** du projet
 
-- Compiler les executables de tests, les exemples ainsi que la documentation du projet
+- Compiler les sources et les executables des tests et des exemples
 
   ```bash
   make all
@@ -39,6 +39,8 @@ Commandes à lancer depuis le répertoire **build** du projet
   make doc
   ```
 
+  La documentation sera générée dans le dossier **doc/html** du projet. Le fichier index.html est le fichier racine de la documentation.
+
 - Lancer les tests unitaires sur les méthodes de la classe Dvector
 
   ```bash
@@ -51,10 +53,16 @@ Commandes à lancer depuis le répertoire **build** du projet
   make check
   ```
 
+  Ceci lancera l'execution de tous les tests et produira un apercu succint du status de chaque test : PASSED ou FAILED.
+  Pour plus d'informations sur un test, executer la commande
+
+  ```bash
+  test/<nom_test>
+  ```
+
 - Executer des examples
 
   Plusieurs exemples sont à disposition (principalement pour répondre aux questions du TP) : DemoQ2, DemoQ4 et DemoComplete.
-  Après compliation, toujours depuis **build**
 
   ```bash
   examples/<nom_exemple>
