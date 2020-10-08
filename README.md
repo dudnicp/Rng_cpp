@@ -4,6 +4,13 @@ Génération de nombres aléatoires en C++.
 
 Plus d'informations dans chacun des dossiers.
 
+## Logiciels nécessaires
+
+- C++11 ou supérieur
+- CMake 2.8 ou supérieur
+- Doxygen (facultatif, sert à générer la documentation)
+- BOOST 1.66 ou supérieur
+
 ## Dossiers
 
 - TP1_dudnicp_deleplaa
