@@ -2,12 +2,6 @@
 
 Classe Dvector : constructeurs et premières fonctions.
 
-## Logiciels nécessaires
-
-- C++11 ou supérieur
-- CMake 2.8 ou supérieur
-- Doxygen (facultatif, sert à générer la documentation)
-
 ## Génération des Makefiles à l'aide de Cmake
 
 Depuis la racine du projet:
