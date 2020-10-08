@@ -1,6 +1,6 @@
 # Projet Modélisation et Programmation C++
 
-Génération de nombres aléatoires en C++. \\
+Génération de nombres aléatoires en C++. \n
 Plus d'informations dans chacun des dossiers.
 
 ## Dossiers
