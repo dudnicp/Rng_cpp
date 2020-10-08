@@ -23,7 +23,3 @@ Voir *rendu.pdf* pour des explications plus détaillées.
 - TP3_dudnicp_deleplaa
 
     Générateurs de nombres aléatoires Park-Miller et XorShift, Distribution Normale
-
-## Auteurs
-
-Adrien Deleplace & Paul Dudnic
