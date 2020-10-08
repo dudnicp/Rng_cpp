@@ -68,7 +68,3 @@ Commandes à lancer depuis le répertoire **build** du projet
   ```bash
   make clean
   ```
-
-## Auteurs
-
-Adrien Deleplace & Paul Dudnic
